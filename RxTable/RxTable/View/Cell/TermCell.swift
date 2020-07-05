@@ -10,15 +10,41 @@ import UIKit
 
 class TermCell: UITableViewCell {
 
+    @IBOutlet private weak var termsLabel: UILabel!
+    @IBOutlet private weak var termsButton: UIButton!
+    
+    var isSelect: Bool = false
+    
+    static let identifier = "TermCell"
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        setupButton()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    private func setupButton() {
+        termsButton.layer.borderWidth = 4
+        termsButton.layer.borderColor = UIColor.blue.cgColor
+        
+        termsButton.layer.cornerRadius = termsButton.frame.width / 2
+        termsButton.clipsToBounds = true
     }
     
+    @IBAction private func didTapConfirmButton(_ sender: Any) {
+        isSelect = !isSelect
+        changeBackground()
+    }
+    
+    private func changeBackground() {
+        if isSelect == true {
+            termsButton.backgroundColor = .blue
+        } else {
+            termsButton.backgroundColor = .white
+        }
+    }
+    
+    func update(model: TermModel) {
+        termsLabel.text = model.termText
+        isSelect = model.isSelect
+    }
 }

@@ -7,3 +7,17 @@
 //
 
 import Foundation
+import RxCocoa
+import RxSwift
+
+final class ViewModel {
+    
+    var terms = Driver<[TermModel]>.of([])
+    let showLoading = BehaviorRelay<Bool>(value: false)
+    
+    init() {
+        showLoading.accept(false)
+        terms = Driver.of(RequestService.getTerms())
+        showLoading.accept(true)
+    }
+}

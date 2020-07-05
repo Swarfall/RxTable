@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,11 @@
 		921CE12E24AF2ED4005B93DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 921CE12C24AF2ED4005B93DD /* Main.storyboard */; };
 		921CE13024AF2ED6005B93DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 921CE12F24AF2ED6005B93DD /* Assets.xcassets */; };
 		921CE13324AF2ED6005B93DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 921CE13124AF2ED6005B93DD /* LaunchScreen.storyboard */; };
+		9242E03224AF3CAD003823F6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9242E03124AF3CAD003823F6 /* ViewModel.swift */; };
+		9242E03624AF4845003823F6 /* TermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9242E03424AF4845003823F6 /* TermCell.swift */; };
+		9242E03724AF4845003823F6 /* TermCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9242E03524AF4845003823F6 /* TermCell.xib */; };
+		9242E03A24AF4F82003823F6 /* TermModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9242E03924AF4F82003823F6 /* TermModel.swift */; };
+		929BA30624AF9E610056531D /* GetTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929BA30524AF9E610056531D /* GetTerms.swift */; };
 		C06065563A76898234329BF2 /* Pods_RxTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB360640C925290A131CC5F /* Pods_RxTable.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +31,11 @@
 		921CE12F24AF2ED6005B93DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		921CE13224AF2ED6005B93DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		921CE13424AF2ED6005B93DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9242E03124AF3CAD003823F6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		9242E03424AF4845003823F6 /* TermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermCell.swift; sourceTree = "<group>"; };
+		9242E03524AF4845003823F6 /* TermCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermCell.xib; sourceTree = "<group>"; };
+		9242E03924AF4F82003823F6 /* TermModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermModel.swift; sourceTree = "<group>"; };
+		929BA30524AF9E610056531D /* GetTerms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTerms.swift; sourceTree = "<group>"; };
 		92AB0704E97C4FD66789FC3B /* Pods-RxTable.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTable.debug.xcconfig"; path = "Target Support Files/Pods-RxTable/Pods-RxTable.debug.xcconfig"; sourceTree = "<group>"; };
 		EBB360640C925290A131CC5F /* Pods_RxTable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxTable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -71,15 +81,60 @@
 		921CE12524AF2ED4005B93DD /* RxTable */ = {
 			isa = PBXGroup;
 			children = (
+				929BA30424AF9E420056531D /* Service */,
+				9242E03824AF4F63003823F6 /* Model */,
+				9242E03024AF3C9C003823F6 /* ViewModel */,
+				9242E02F24AF3C93003823F6 /* View */,
 				921CE12624AF2ED4005B93DD /* AppDelegate.swift */,
 				921CE12824AF2ED4005B93DD /* SceneDelegate.swift */,
-				921CE12A24AF2ED4005B93DD /* ViewController.swift */,
-				921CE12C24AF2ED4005B93DD /* Main.storyboard */,
 				921CE12F24AF2ED6005B93DD /* Assets.xcassets */,
 				921CE13124AF2ED6005B93DD /* LaunchScreen.storyboard */,
 				921CE13424AF2ED6005B93DD /* Info.plist */,
 			);
 			path = RxTable;
+			sourceTree = "<group>";
+		};
+		9242E02F24AF3C93003823F6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9242E03324AF4805003823F6 /* Cell */,
+				921CE12A24AF2ED4005B93DD /* ViewController.swift */,
+				921CE12C24AF2ED4005B93DD /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9242E03024AF3C9C003823F6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9242E03124AF3CAD003823F6 /* ViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9242E03324AF4805003823F6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9242E03424AF4845003823F6 /* TermCell.swift */,
+				9242E03524AF4845003823F6 /* TermCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		9242E03824AF4F63003823F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9242E03924AF4F82003823F6 /* TermModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		929BA30424AF9E420056531D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				929BA30524AF9E610056531D /* GetTerms.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		C072BC2AECF18778EC6B7AEA /* Pods */ = {
@@ -88,7 +143,6 @@
 				92AB0704E97C4FD66789FC3B /* Pods-RxTable.debug.xcconfig */,
 				609C9F72D0289FDF841084A8 /* Pods-RxTable.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -153,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				921CE13324AF2ED6005B93DD /* LaunchScreen.storyboard in Resources */,
+				9242E03724AF4845003823F6 /* TermCell.xib in Resources */,
 				921CE13024AF2ED6005B93DD /* Assets.xcassets in Resources */,
 				921CE12E24AF2ED4005B93DD /* Main.storyboard in Resources */,
 			);
@@ -209,7 +264,11 @@
 			files = (
 				921CE12B24AF2ED4005B93DD /* ViewController.swift in Sources */,
 				921CE12724AF2ED4005B93DD /* AppDelegate.swift in Sources */,
+				9242E03224AF3CAD003823F6 /* ViewModel.swift in Sources */,
+				9242E03A24AF4F82003823F6 /* TermModel.swift in Sources */,
+				9242E03624AF4845003823F6 /* TermCell.swift in Sources */,
 				921CE12924AF2ED4005B93DD /* SceneDelegate.swift in Sources */,
+				929BA30624AF9E610056531D /* GetTerms.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
