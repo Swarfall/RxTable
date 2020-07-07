@@ -18,6 +18,8 @@
 		9242E03724AF4845003823F6 /* TermCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9242E03524AF4845003823F6 /* TermCell.xib */; };
 		9242E03A24AF4F82003823F6 /* TermModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9242E03924AF4F82003823F6 /* TermModel.swift */; };
 		929BA30624AF9E610056531D /* GetTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929BA30524AF9E610056531D /* GetTerms.swift */; };
+		929F476124B2FDA700D86C1B /* ExtVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929F476024B2FDA700D86C1B /* ExtVC.swift */; };
+		929F476324B3452200D86C1B /* ExtGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929F476224B3452200D86C1B /* ExtGesture.swift */; };
 		C06065563A76898234329BF2 /* Pods_RxTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB360640C925290A131CC5F /* Pods_RxTable.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +38,8 @@
 		9242E03524AF4845003823F6 /* TermCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermCell.xib; sourceTree = "<group>"; };
 		9242E03924AF4F82003823F6 /* TermModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermModel.swift; sourceTree = "<group>"; };
 		929BA30524AF9E610056531D /* GetTerms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTerms.swift; sourceTree = "<group>"; };
+		929F476024B2FDA700D86C1B /* ExtVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtVC.swift; sourceTree = "<group>"; };
+		929F476224B3452200D86C1B /* ExtGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtGesture.swift; sourceTree = "<group>"; };
 		92AB0704E97C4FD66789FC3B /* Pods-RxTable.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTable.debug.xcconfig"; path = "Target Support Files/Pods-RxTable/Pods-RxTable.debug.xcconfig"; sourceTree = "<group>"; };
 		EBB360640C925290A131CC5F /* Pods_RxTable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxTable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -81,6 +85,7 @@
 		921CE12524AF2ED4005B93DD /* RxTable */ = {
 			isa = PBXGroup;
 			children = (
+				929F475F24B2FD9500D86C1B /* Extensions */,
 				929BA30424AF9E420056531D /* Service */,
 				9242E03824AF4F63003823F6 /* Model */,
 				9242E03024AF3C9C003823F6 /* ViewModel */,
@@ -135,6 +140,15 @@
 				929BA30524AF9E610056531D /* GetTerms.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		929F475F24B2FD9500D86C1B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				929F476024B2FDA700D86C1B /* ExtVC.swift */,
+				929F476224B3452200D86C1B /* ExtGesture.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C072BC2AECF18778EC6B7AEA /* Pods */ = {
@@ -262,6 +276,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				929F476124B2FDA700D86C1B /* ExtVC.swift in Sources */,
+				929F476324B3452200D86C1B /* ExtGesture.swift in Sources */,
 				921CE12B24AF2ED4005B93DD /* ViewController.swift in Sources */,
 				921CE12724AF2ED4005B93DD /* AppDelegate.swift in Sources */,
 				9242E03224AF3CAD003823F6 /* ViewModel.swift in Sources */,

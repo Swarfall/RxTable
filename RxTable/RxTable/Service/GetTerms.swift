@@ -26,7 +26,6 @@ final class RequestService {
                                "https://issuu.com/nadirchine/docs/rxswift-reactive-programming-swift-",
                                "https://stackoverflow.com/"])
         
-        
         return [first, second, third, fourth]
     }
 }

@@ -12,7 +12,7 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TermCell" rowHeight="67" id="KGk-i7-Jjw" customClass="TermCell" customModule="RxTable" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="412" height="67"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="412" height="67"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -27,10 +27,11 @@
                             <action selector="didTapConfirmButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0Ia-Ez-at0"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O66-lS-ykz">
-                        <rect key="frame" x="70" y="20" width="322" height="30"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WgQ-8G-J6G">
+                        <rect key="frame" x="70" y="20" width="322" height="27"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="g8C-RB-Tng"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="4nh-fH-1r6"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -39,17 +40,17 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="3Pz-t0-NnL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="1c9-HQ-P22"/>
-                    <constraint firstAttribute="bottom" secondItem="O66-lS-ykz" secondAttribute="bottom" constant="20" id="Kyf-YR-QDx"/>
-                    <constraint firstItem="O66-lS-ykz" firstAttribute="leading" secondItem="3Pz-t0-NnL" secondAttribute="trailing" constant="20" id="Tby-eo-Bzk"/>
+                    <constraint firstAttribute="bottom" secondItem="WgQ-8G-J6G" secondAttribute="bottom" constant="20" id="3Fs-Lo-w9N"/>
+                    <constraint firstItem="WgQ-8G-J6G" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="9Oh-VM-tTR"/>
+                    <constraint firstAttribute="trailing" secondItem="WgQ-8G-J6G" secondAttribute="trailing" constant="20" id="SSp-tK-CEH"/>
+                    <constraint firstItem="WgQ-8G-J6G" firstAttribute="leading" secondItem="3Pz-t0-NnL" secondAttribute="trailing" constant="20" id="bBk-Th-Pib"/>
                     <constraint firstItem="3Pz-t0-NnL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="dT2-EX-oWm"/>
-                    <constraint firstItem="O66-lS-ykz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="iwm-Kh-del"/>
-                    <constraint firstAttribute="trailing" secondItem="O66-lS-ykz" secondAttribute="trailing" constant="20" id="znu-l6-0Vc"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="termsButton" destination="3Pz-t0-NnL" id="rnx-1g-zSh"/>
-                <outlet property="termsLabel" destination="O66-lS-ykz" id="bdg-ph-J9j"/>
+                <outlet property="termLabel" destination="WgQ-8G-J6G" id="01P-GS-qvV"/>
+                <outlet property="termsButton" destination="3Pz-t0-NnL" id="ZMX-md-rSf"/>
             </connections>
             <point key="canvasLocation" x="186.95652173913044" y="165.06696428571428"/>
         </tableViewCell>

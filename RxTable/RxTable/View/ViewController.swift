@@ -19,12 +19,15 @@ final class ViewController: UIViewController {
     let viewModel = ViewModel()
     let disposeBag = DisposeBag()
     
+    private var valid = [0: false, 1: false, 2: false, 3: false]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
         bind()
     }
     
+    // MARK: - Privaye methods
     private func registerCell() {
         let nib = UINib(nibName: TermCell.identifier, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: TermCell.identifier)
@@ -33,8 +36,17 @@ final class ViewController: UIViewController {
     private func bind() {
         viewModel.terms
             .asObservable()
-            .bind(to: tableView.rx.items(cellIdentifier: TermCell.identifier, cellType: TermCell.self)) { row, term, cell in
-                cell.update(model: term)
+            .bind(to: tableView.rx.items(cellIdentifier: TermCell.identifier, cellType: TermCell.self)) { row, terms, cell in
+                cell.update(model: terms)
+                cell.termsButton.rx.tap
+                    .asObservable()
+                    .subscribe(onNext: {
+                        if cell.termsButton.backgroundColor == .blue {
+                            self.valid.updateValue(true, forKey: row)
+                        } else {
+                            self.valid.updateValue(false, forKey: row)
+                        }
+                    }).disposed(by: self.disposeBag)
         }.disposed(by: disposeBag)
         
         viewModel.showLoading.asObservable()
@@ -42,6 +54,20 @@ final class ViewController: UIViewController {
             .bind(to: activiteIndicator.rx.isHidden)
             .disposed(by: disposeBag)
         
+        activiteIndicator.rx.isAnimating
+        .onCompleted()
+    }
+    
+    private func presentAlert(title: String) {
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default) { _ in }
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: - Action method
+    @IBAction func didTapContinueButton(_ sender: Any) {
+        valid.values.allSatisfy({ $0 == true }) ? presentAlert(title: "SUCCESS") : presentAlert(title: "FAIL")
     }
 }
 

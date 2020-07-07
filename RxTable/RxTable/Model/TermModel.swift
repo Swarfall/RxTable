@@ -9,12 +9,10 @@
 import Foundation
 
 final class TermModel {
-    var isSelect: Bool
     let termText: String
     let url: [String]?
     
-    init(isSelect: Bool = false, termText: String, url: [String]?) {
-        self.isSelect = isSelect
+    init(termText: String, url: [String]?) {
         self.termText = termText
         self.url = url
     }
