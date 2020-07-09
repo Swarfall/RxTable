@@ -38,10 +38,10 @@ final class ViewController: UIViewController {
             .asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: TermCell.identifier, cellType: TermCell.self)) { row, terms, cell in
                 cell.update(model: terms)
-                cell.termsButton.rx.tap
+                cell.termButton.rx.tap
                     .asObservable()
                     .subscribe(onNext: {
-                        if cell.termsButton.backgroundColor == .blue {
+                        if cell.termButton.backgroundColor == .blue {
                             self.valid.updateValue(true, forKey: row)
                         } else {
                             self.valid.updateValue(false, forKey: row)
@@ -51,11 +51,10 @@ final class ViewController: UIViewController {
         
         viewModel.showLoading.asObservable()
             .observeOn(MainScheduler.instance)
-            .bind(to: activiteIndicator.rx.isHidden)
-            .disposed(by: disposeBag)
-        
-        activiteIndicator.rx.isAnimating
-        .onCompleted()
+            .bind(onNext: {_ in
+                self.activiteIndicator.rx.isAnimating.onCompleted()
+                self.activiteIndicator.isHidden = true
+            }).disposed(by: disposeBag)
     }
     
     private func presentAlert(title: String) {

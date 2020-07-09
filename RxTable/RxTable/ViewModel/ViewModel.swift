@@ -16,8 +16,8 @@ final class ViewModel {
     let showLoading = BehaviorRelay<Bool>(value: false)
     
     init() {
-        showLoading.accept(false)
-        terms = Driver.of(RequestService.getTerms())
         showLoading.accept(true)
+        terms = Driver.of(RequestService.getTerms())
+        showLoading.accept(false)
     }
 }

@@ -10,7 +10,6 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-// TODO: - на будущее, когда валидация будет на рыксе
 struct AlertActionStyle {
     var title: String
     var style: UIAlertAction.Style

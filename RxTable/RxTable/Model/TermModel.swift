@@ -9,11 +9,9 @@
 import Foundation
 
 final class TermModel {
-    let termText: String
-    let url: [String]?
+    let agreementText: String
     
-    init(termText: String, url: [String]?) {
-        self.termText = termText
-        self.url = url
+    init(agreementText: String) {
+        self.agreementText = agreementText
     }
 }

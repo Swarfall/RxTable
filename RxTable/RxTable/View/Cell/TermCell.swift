@@ -10,28 +10,30 @@ import UIKit
 
 class TermCell: UITableViewCell {
     
-    @IBOutlet weak var termsButton: UIButton!
-    @IBOutlet weak var termLabel: UILabel!
-    
+    @IBOutlet weak var termButton: UIButton!
+    @IBOutlet weak var termTextView: UITextView!
+
     static let identifier = "TermCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setupButton()
-        setupLabel()
     }
     
     private func setupButton() {
-        termsButton.layer.borderWidth = 4
-        termsButton.layer.borderColor = UIColor.blue.cgColor
+        termButton.layer.borderWidth = 4
+        termButton.layer.borderColor = UIColor.blue.cgColor
         
-        termsButton.layer.cornerRadius = termsButton.frame.width / 2
-        termsButton.clipsToBounds = true
+        termButton.layer.cornerRadius = termButton.frame.width / 2
+        termButton.clipsToBounds = true
     }
     
-    func setupLabel() {
-        termLabel.isUserInteractionEnabled = true
-        termLabel.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(TermCell.tapLabel(gesture:))))
+    private func setupTextView() {
+        termTextView.delegate = self
+        termTextView.translatesAutoresizingMaskIntoConstraints = true
+        termTextView.sizeToFit()
+        termTextView.isScrollEnabled = false
+        termTextView.isEditable = false
     }
     
     @IBAction private func didTapConfirmButton(_ sender: Any) {
@@ -39,32 +41,22 @@ class TermCell: UITableViewCell {
     }
     
     private func changeBackground() {
-        if termsButton.backgroundColor == .white {
-            termsButton.backgroundColor = .blue
+        if termButton.backgroundColor == .white {
+            termButton.backgroundColor = .blue
         } else {
-            termsButton.backgroundColor = .white
+            termButton.backgroundColor = .white
         }
     }
     
     func update(model: TermModel) {
-        termLabel.text = model.termText
-        mutableText(model: model)
+        termTextView.attributedText = model.agreementText.htmlToAttributedString
+        setupTextView()
     }
-    
-    func mutableText(model: TermModel) {
-        if model.url != nil {
-            let attributedString = NSMutableAttributedString(string: model.termText)
-            attributedString.addAttribute(.link, value: model.url?.first ?? "", range: NSRange(location: 19, length: 18))
-            attributedString.addAttribute(.link, value: model.url?[1] ?? "", range: NSRange(location: 49, length: 26))
-            termLabel.attributedText = attributedString
-        }
-    }
-    
-    @objc func tapLabel(gesture: UITapGestureRecognizer) {
-        //        if gesture.didTapAttributedTextInLabel(label: termLabel, inRange: NSRange(location: 19, length: 18)) {
-        //            guard let model = model else { return }
-        //            UIApplication.shared.canOpenURL(URL(string: (model.url?.first!)!)!)
-        //        }
-        print("tap")
+}
+
+extension TermCell: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        UIApplication.shared.open(URL)
+        return false
     }
 }

@@ -17,9 +17,9 @@
 		9242E03624AF4845003823F6 /* TermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9242E03424AF4845003823F6 /* TermCell.swift */; };
 		9242E03724AF4845003823F6 /* TermCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9242E03524AF4845003823F6 /* TermCell.xib */; };
 		9242E03A24AF4F82003823F6 /* TermModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9242E03924AF4F82003823F6 /* TermModel.swift */; };
+		929B275024B5B71B009F84C5 /* ExtString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929B274F24B5B71B009F84C5 /* ExtString.swift */; };
 		929BA30624AF9E610056531D /* GetTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929BA30524AF9E610056531D /* GetTerms.swift */; };
 		929F476124B2FDA700D86C1B /* ExtVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929F476024B2FDA700D86C1B /* ExtVC.swift */; };
-		929F476324B3452200D86C1B /* ExtGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929F476224B3452200D86C1B /* ExtGesture.swift */; };
 		C06065563A76898234329BF2 /* Pods_RxTable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB360640C925290A131CC5F /* Pods_RxTable.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,9 +37,9 @@
 		9242E03424AF4845003823F6 /* TermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermCell.swift; sourceTree = "<group>"; };
 		9242E03524AF4845003823F6 /* TermCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermCell.xib; sourceTree = "<group>"; };
 		9242E03924AF4F82003823F6 /* TermModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermModel.swift; sourceTree = "<group>"; };
+		929B274F24B5B71B009F84C5 /* ExtString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtString.swift; sourceTree = "<group>"; };
 		929BA30524AF9E610056531D /* GetTerms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTerms.swift; sourceTree = "<group>"; };
 		929F476024B2FDA700D86C1B /* ExtVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtVC.swift; sourceTree = "<group>"; };
-		929F476224B3452200D86C1B /* ExtGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtGesture.swift; sourceTree = "<group>"; };
 		92AB0704E97C4FD66789FC3B /* Pods-RxTable.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxTable.debug.xcconfig"; path = "Target Support Files/Pods-RxTable/Pods-RxTable.debug.xcconfig"; sourceTree = "<group>"; };
 		EBB360640C925290A131CC5F /* Pods_RxTable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxTable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -146,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				929F476024B2FDA700D86C1B /* ExtVC.swift */,
-				929F476224B3452200D86C1B /* ExtGesture.swift */,
+				929B274F24B5B71B009F84C5 /* ExtString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -277,7 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				929F476124B2FDA700D86C1B /* ExtVC.swift in Sources */,
-				929F476324B3452200D86C1B /* ExtGesture.swift in Sources */,
+				929B275024B5B71B009F84C5 /* ExtString.swift in Sources */,
 				921CE12B24AF2ED4005B93DD /* ViewController.swift in Sources */,
 				921CE12724AF2ED4005B93DD /* AppDelegate.swift in Sources */,
 				9242E03224AF3CAD003823F6 /* ViewModel.swift in Sources */,
