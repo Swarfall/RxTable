@@ -24,7 +24,9 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
-        bind()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.bind()
+        }
     }
     
     // MARK: - Privaye methods
@@ -41,7 +43,7 @@ final class ViewController: UIViewController {
                 cell.termButton.rx.tap
                     .asObservable()
                     .subscribe(onNext: {
-                        if cell.termButton.backgroundColor == .blue {
+                        if cell.isValid == true {
                             self.valid.updateValue(true, forKey: row)
                         } else {
                             self.valid.updateValue(false, forKey: row)
@@ -52,7 +54,6 @@ final class ViewController: UIViewController {
         viewModel.showLoading.asObservable()
             .observeOn(MainScheduler.instance)
             .bind(onNext: {_ in
-                self.activiteIndicator.rx.isAnimating.onCompleted()
                 self.activiteIndicator.isHidden = true
             }).disposed(by: disposeBag)
     }
