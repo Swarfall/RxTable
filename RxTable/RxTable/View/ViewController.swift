@@ -41,11 +41,11 @@ final class ViewController: UIViewController {
                 cell.termButton.rx.tap
                     .asObservable()
                     .subscribe(onNext: { [weak self] _ in
-                        cell.isValid == true ? self?.valid.updateValue(true, forKey: row) : self?.valid.updateValue(false, forKey: row)
+                        self?.valid.updateValue(cell.isValid, forKey: row)
                     }).disposed(by: self!.disposeBag)
         }.disposed(by: disposeBag)
         
-        viewModel.showLoading.bind(to: activiteIndicator.rx.isAnimating).disposed(by: disposeBag)
+        viewModel.showLoading.asObservable().observeOn(MainScheduler.instance).bind(to: activiteIndicator.rx.isHidden).disposed(by: disposeBag)
     }
     
     private func presentAlert(title: String) {
