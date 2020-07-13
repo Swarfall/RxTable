@@ -15,15 +15,11 @@ final class ViewModel {
     var terms = Observable<[TermModel]>.of([])
     let showLoading = BehaviorRelay<Bool>(value: false)
     
-    init() {
-        showLoading.accept(true)
-    }
-    
     func getData() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.showLoading.accept(true)
-            self.terms = RequestService.getTerms()
-            self.showLoading.accept(false)
-        }
+        showLoading.accept(true)
+        RequestService.getTerms(completion: { [weak self] getTerms in
+            self?.terms = getTerms
+        })
+        showLoading.accept(false)
     }
 }

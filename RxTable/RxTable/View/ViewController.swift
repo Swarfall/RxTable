@@ -46,7 +46,6 @@ final class ViewController: UIViewController {
         }.disposed(by: disposeBag)
         
         viewModel.showLoading.bind(to: activiteIndicator.rx.isAnimating).disposed(by: disposeBag)
-        self.tableView.reloadData()
     }
     
     private func presentAlert(title: String) {
