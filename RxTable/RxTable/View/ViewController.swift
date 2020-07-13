@@ -24,12 +24,11 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.bind()
-        }
+        viewModel.getData()
+        bind()
     }
     
-    // MARK: - Privaye methods
+    // MARK: - Private methods
     private func registerCell() {
         let nib = UINib(nibName: TermCell.identifier, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: TermCell.identifier)
@@ -37,25 +36,17 @@ final class ViewController: UIViewController {
     
     private func bind() {
         viewModel.terms
-            .asObservable()
-            .bind(to: tableView.rx.items(cellIdentifier: TermCell.identifier, cellType: TermCell.self)) { row, terms, cell in
+            .bind(to: tableView.rx.items(cellIdentifier: TermCell.identifier, cellType: TermCell.self)) { [weak self] row, terms, cell in
                 cell.update(model: terms)
                 cell.termButton.rx.tap
                     .asObservable()
-                    .subscribe(onNext: {
-                        if cell.isValid == true {
-                            self.valid.updateValue(true, forKey: row)
-                        } else {
-                            self.valid.updateValue(false, forKey: row)
-                        }
-                    }).disposed(by: self.disposeBag)
+                    .subscribe(onNext: { [weak self] _ in
+                        cell.isValid == true ? self?.valid.updateValue(true, forKey: row) : self?.valid.updateValue(false, forKey: row)
+                    }).disposed(by: self!.disposeBag)
         }.disposed(by: disposeBag)
         
-        viewModel.showLoading.asObservable()
-            .observeOn(MainScheduler.instance)
-            .bind(onNext: {_ in
-                self.activiteIndicator.isHidden = true
-            }).disposed(by: disposeBag)
+        viewModel.showLoading.bind(to: activiteIndicator.rx.isAnimating).disposed(by: disposeBag)
+        self.tableView.reloadData()
     }
     
     private func presentAlert(title: String) {

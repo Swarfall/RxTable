@@ -6,18 +6,24 @@
 //  Copyright © 2020 ViacheslavSavitsky. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import RxCocoa
 import RxSwift
 
 final class ViewModel {
     
-    var terms = Driver<[TermModel]>.of([])
+    var terms = Observable<[TermModel]>.of([])
     let showLoading = BehaviorRelay<Bool>(value: false)
     
     init() {
         showLoading.accept(true)
-        terms = Driver.of(RequestService.getTerms())
-        showLoading.accept(false)
+    }
+    
+    func getData() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.showLoading.accept(true)
+            self.terms = RequestService.getTerms()
+            self.showLoading.accept(false)
+        }
     }
 }

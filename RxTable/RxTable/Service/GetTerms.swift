@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import UIKit
+import RxCocoa
+import RxSwift
 
 final class RequestService {
-    static func getTerms() -> [TermModel] {
+    static func getTerms() -> Observable<[TermModel]> {
         let first = TermModel(agreementText: "I make a request for the opening of an account with solarisBank AG and confirm the correctness of the information provided. Should the information change, I am obliged to immediately inform SPACE and, if necessary, make relevant documents available")
         
         let second = TermModel(agreementText: "I act only in my own economic interest and not on the initiative of a third party")
@@ -18,6 +21,6 @@ final class RequestService {
         
         let fourth = TermModel(agreementText: "I accept Space GmBH <a href=\"https://space.ge/\">Terms & Conditions</a> as well as <a href=\"https://www.solarisbank.com/content/partner/allgemeine_geschaeftsbedingungen_englisch_v1.3.pdf\">General Terms & Conditions</a> and <a href=\"https://www.solarisbank.com/en/customer-information/\">all other conditions</a> of solarisBank AG")
         
-        return [first, second, fourth, third]
+        return Observable.of([first, second, fourth, third])
     }
 }

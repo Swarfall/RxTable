@@ -36,7 +36,6 @@ class TermCell: UITableViewCell {
         termTextView.isEditable = false
         termTextView.selectedTextRange = termTextView.textRange(from: termTextView.beginningOfDocument, to: termTextView.beginningOfDocument)
         termTextView.sizeToFit()
-
     }
     
     private func changeBackground() {
