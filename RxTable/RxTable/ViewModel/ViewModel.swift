@@ -12,15 +12,24 @@ import RxSwift
 
 final class ViewModel {
     
-    let terms = PublishSubject<[TermModel]>()
-    let showLoading = BehaviorRelay<Bool>(value: true)
+    var terms: Observable<[TermModel]> {
+        return self.termsProperty.asObservable()
+    }
     
-    func getData() {
-        showLoading.accept(false)
-        RequestService.getTerms(completion: { [weak self] getTerms in
-            self?.terms.onNext(getTerms)
-            self?.terms.onCompleted()
-            self?.showLoading.accept(true)
-        })
+    var loadProgress: Observable<Bool> {
+        return self.loadProperty.asObservable()
+    }
+    
+    // MARK: - Private properties
+    private let termsProperty = BehaviorRelay<[TermModel]>(value: [])
+    private let loadProperty = BehaviorRelay<Bool>(value: false)
+    
+    func fetchTerms() -> Observable<[TermModel]> {
+        loadProperty.accept(true)
+        RequestService.getTerms { [weak self] terms in
+            self?.termsProperty.accept(terms)
+            self?.loadProperty.accept(false)
+        }
+        return termsProperty.asObservable()
     }
 }

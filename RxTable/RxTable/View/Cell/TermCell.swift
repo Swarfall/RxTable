@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class TermCell: UITableViewCell {
     
@@ -16,10 +18,16 @@ class TermCell: UITableViewCell {
     static let identifier = "TermCell"
     
     var isValid = false
+    var disposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setupButton()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
     }
     
     private func setupButton() {

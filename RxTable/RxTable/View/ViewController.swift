@@ -19,12 +19,12 @@ final class ViewController: UIViewController {
     let viewModel = ViewModel()
     let disposeBag = DisposeBag()
     
-    private var valid = [0: false, 1: false, 2: false, 3: false]
+    private var valid = [Int: Bool]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
-        viewModel.getData()
+        viewModel.fetchTerms()
         bind()
     }
     
@@ -38,14 +38,16 @@ final class ViewController: UIViewController {
         viewModel.terms
             .bind(to: tableView.rx.items(cellIdentifier: TermCell.identifier, cellType: TermCell.self)) { [weak self] row, terms, cell in
                 cell.update(model: terms)
+                self?.valid[row] = false // filling dictionary "valid" 
+
                 cell.termButton.rx.tap
-                    .asObservable()
-                    .subscribe(onNext: { [weak self] _ in
+                    .subscribe(onNext: { [weak self] in
                         self?.valid.updateValue(cell.isValid, forKey: row)
-                    }).disposed(by: self!.disposeBag)
+                    }).disposed(by: cell.disposeBag)
+                
         }.disposed(by: disposeBag)
         
-        viewModel.showLoading.asObservable().observeOn(MainScheduler.instance).bind(to: activiteIndicator.rx.isHidden).disposed(by: disposeBag)
+        viewModel.loadProgress.bind(to: self.activiteIndicator.rx.isAnimating).disposed(by: disposeBag)
     }
     
     private func presentAlert(title: String) {
@@ -58,12 +60,5 @@ final class ViewController: UIViewController {
     // MARK: - Action method
     @IBAction func didTapContinueButton(_ sender: Any) {
         valid.values.allSatisfy({ $0 == true }) ? presentAlert(title: "SUCCESS") : presentAlert(title: "FAIL")
-    }
-}
-
-extension ViewController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        UIApplication.shared.open(URL)
-        return false
     }
 }
