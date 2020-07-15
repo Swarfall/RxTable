@@ -57,7 +57,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapContinueButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kbM-0w-4M8"/>
+                                    <action selector="didTapContinueButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IHR-Pw-VXw"/>
                                 </connections>
                             </button>
                         </subviews>

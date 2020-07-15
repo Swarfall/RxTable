@@ -48,7 +48,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="termButton" destination="3Pz-t0-NnL" id="Jua-xE-Xo9"/>
-                <outlet property="termTextView" destination="cy7-Qg-ca8" id="QuN-GX-woL"/>
+                <outlet property="termTextView" destination="cy7-Qg-ca8" id="UDk-QZ-dKk"/>
             </connections>
             <point key="canvasLocation" x="185.625" y="219.19014084507043"/>
         </tableViewCell>

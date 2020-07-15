@@ -13,11 +13,14 @@ import RxCocoa
 final class TermCell: UITableViewCell {
     
     @IBOutlet private weak var termButton: UIButton!
-    @IBOutlet weak var termTextView: UITextView!
+    @IBOutlet private weak var termTextView: UITextView!
     
     static let identifier = "TermCell"
     
-    var isValid = false
+    private var isValid = false
+    
+    var muttableArray = ["Customer Information on Data Processing", "Depositor Information Sheet", "tax information", "Terms & Conditions", "General Terms & Conditions", "all other conditions"]
+    
     var subscribeButtonAction: ((Bool) -> Void)?
     var linkTapped: ((String) -> Void)?
     
@@ -46,7 +49,8 @@ final class TermCell: UITableViewCell {
         termTextView.sizeToFit()
     }
     
-    func changeBackground() {
+    
+    private func changeBackground() {
         isValid = !isValid
         
         if isValid == true {

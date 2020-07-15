@@ -58,7 +58,7 @@ final class ViewController: UIViewController {
     }
     
     // MARK: - Action method
-    @IBAction func didTapContinueButton(_ sender: Any) {
+    @IBAction private func didTapContinueButton(_ sender: Any) {
         valid.values.allSatisfy({ $0 == true }) ? presentAlert(title: "SUCCESS") : presentAlert(title: "FAIL")
     }
 }
