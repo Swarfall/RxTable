@@ -19,8 +19,6 @@ final class TermCell: UITableViewCell {
     
     private var isValid = false
     
-    var muttableArray = ["Customer Information on Data Processing", "Depositor Information Sheet", "tax information", "Terms & Conditions", "General Terms & Conditions", "all other conditions"]
-    
     var subscribeButtonAction: ((Bool) -> Void)?
     var linkTapped: ((String) -> Void)?
     
