@@ -12,13 +12,14 @@ import RxCocoa
 
 class TermCell: UITableViewCell {
     
-    @IBOutlet weak var termButton: UIButton!
+    @IBOutlet private weak var termButton: UIButton!
     @IBOutlet weak var termTextView: UITextView!
     
     static let identifier = "TermCell"
     
     var isValid = false
     var disposeBag = DisposeBag()
+    var subscribeButtonAction: ((TermCell) -> (Void))?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,8 +32,8 @@ class TermCell: UITableViewCell {
     }
     
     private func setupButton() {
-        termButton.layer.borderWidth = 4
-        termButton.layer.borderColor = UIColor.blue.cgColor
+        termButton.layer.borderWidth = 2
+        termButton.layer.borderColor = UIColor.link.cgColor
         
         termButton.layer.cornerRadius = termButton.frame.width / 2
         termButton.clipsToBounds = true
@@ -42,21 +43,25 @@ class TermCell: UITableViewCell {
         termTextView.translatesAutoresizingMaskIntoConstraints = false
         termTextView.isScrollEnabled = false
         termTextView.isEditable = false
-        termTextView.selectedTextRange = termTextView.textRange(from: termTextView.beginningOfDocument, to: termTextView.beginningOfDocument)
+        termTextView.isSelectable = true
+        termTextView.font = UIFont.systemFont(ofSize: 15)
+        termTextView.selectedTextRange = termTextView.textRange(from: termTextView.beginningOfDocument,
+                                                                to: termTextView.beginningOfDocument)
         termTextView.sizeToFit()
     }
     
-    private func changeBackground() {
+    func changeBackground() {
+        isValid = !isValid
+        
         if isValid == true {
-            termButton.backgroundColor = .blue
+            termButton.backgroundColor = .link
         } else {
             termButton.backgroundColor = .white
         }
     }
     
     @IBAction private func didTapConfirmButton(_ sender: Any) {
-        isValid = !isValid
-        changeBackground()
+        subscribeButtonAction?(self)
     }
     
     func update(model: TermModel) {

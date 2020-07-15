@@ -24,12 +24,11 @@ final class ViewModel {
     private let termsProperty = BehaviorRelay<[TermModel]>(value: [])
     private let loadProperty = BehaviorRelay<Bool>(value: false)
     
-    func fetchTerms() -> Observable<[TermModel]> {
+    func fetchTerms() {
         loadProperty.accept(true)
         RequestService.getTerms { [weak self] terms in
             self?.termsProperty.accept(terms)
             self?.loadProperty.accept(false)
         }
-        return termsProperty.asObservable()
     }
 }
