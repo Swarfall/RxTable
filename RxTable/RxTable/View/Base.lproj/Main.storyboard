@@ -79,9 +79,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="activiteIndicator" destination="d1m-Q7-Q4i" id="abO-Lp-vA9"/>
-                        <outlet property="continueButton" destination="Fmg-kr-QRl" id="lEi-Gw-kIi"/>
-                        <outlet property="tableView" destination="gTZ-Az-kxm" id="JOz-5k-q8P"/>
+                        <outlet property="activiteIndicator" destination="d1m-Q7-Q4i" id="fWi-Pj-0cU"/>
+                        <outlet property="continueButton" destination="Fmg-kr-QRl" id="H4k-SX-O7u"/>
+                        <outlet property="tableView" destination="gTZ-Az-kxm" id="0Eb-qM-a1r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

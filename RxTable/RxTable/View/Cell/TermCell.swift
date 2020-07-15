@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TermCell: UITableViewCell {
+final class TermCell: UITableViewCell {
     
     @IBOutlet private weak var termButton: UIButton!
     @IBOutlet weak var termTextView: UITextView!
@@ -18,17 +18,12 @@ class TermCell: UITableViewCell {
     static let identifier = "TermCell"
     
     var isValid = false
-    var disposeBag = DisposeBag()
-    var subscribeButtonAction: ((TermCell) -> (Void))?
+    var subscribeButtonAction: ((Bool) -> Void)?
+    var linkTapped: ((String) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setupButton()
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        disposeBag = DisposeBag()
     }
     
     private func setupButton() {
@@ -40,6 +35,7 @@ class TermCell: UITableViewCell {
     }
     
     private func setupTextView() {
+        termTextView.delegate = self
         termTextView.translatesAutoresizingMaskIntoConstraints = false
         termTextView.isScrollEnabled = false
         termTextView.isEditable = false
@@ -61,11 +57,19 @@ class TermCell: UITableViewCell {
     }
     
     @IBAction private func didTapConfirmButton(_ sender: Any) {
-        subscribeButtonAction?(self)
+        changeBackground()
+        subscribeButtonAction?(isValid)
     }
     
     func update(model: TermModel) {
         termTextView.attributedText = model.agreementText.htmlToAttributedString
         setupTextView()
+    }
+}
+
+extension TermCell: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        linkTapped?("\(URL)")
+        return false
     }
 }

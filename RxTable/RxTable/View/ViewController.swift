@@ -12,9 +12,9 @@ import RxSwift
 
 final class ViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var continueButton: UIButton!
-    @IBOutlet weak var activiteIndicator: UIActivityIndicatorView!
+    @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet weak private var continueButton: UIButton!
+    @IBOutlet weak private var activiteIndicator: UIActivityIndicatorView!
     
     let viewModel = ViewModel()
     let disposeBag = DisposeBag()
@@ -37,14 +37,14 @@ final class ViewController: UIViewController {
     private func bind() {
         viewModel.terms
             .bind(to: tableView.rx.items(cellIdentifier: TermCell.identifier, cellType: TermCell.self)) { [weak self] row, terms, cell in
-                cell.termTextView.delegate = self
                 cell.update(model: terms)
                 self?.valid[row] = false
-                cell.subscribeButtonAction = { [weak self] termCell in
-                    termCell.changeBackground()
-                    self?.valid.updateValue(termCell.isValid, forKey: row)
+                cell.subscribeButtonAction = { [weak self] isValid in
+                    self?.valid.updateValue(isValid, forKey: row)
                 }
-//                self?.valid.updateValue(cell.isValid, forKey: row)
+                cell.linkTapped = { [weak self] link in
+                    self?.presentAlert(title: link)
+                }
         }.disposed(by: disposeBag)
         
         viewModel.loadProgress.bind(to: self.activiteIndicator.rx.isAnimating).disposed(by: disposeBag)
@@ -60,12 +60,5 @@ final class ViewController: UIViewController {
     // MARK: - Action method
     @IBAction func didTapContinueButton(_ sender: Any) {
         valid.values.allSatisfy({ $0 == true }) ? presentAlert(title: "SUCCESS") : presentAlert(title: "FAIL")
-    }
-}
-
-extension ViewController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        presentAlert(title: "\(URL)")
-        return false
     }
 }
