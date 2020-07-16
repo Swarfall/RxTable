@@ -9,15 +9,11 @@
 import Foundation
 
 final class RequestService {
-    static func fetchAdress(completion: @escaping([CountryModel]) -> Void) {
-        var adresses = [CountryModel]()
+    static func fetchAdress(completion: @escaping([CountryEntity]) -> Void) {
+
+        let ge = CountryEntity(country: "Germany", code: "GER", state: [StateEntity(nameState: "Munich"), StateEntity(nameState: "Dortmund"), StateEntity(nameState: "Bayern"), StateEntity(nameState: "Livercusen")])
+        let ua = CountryEntity(country: "Ukraine", code: "UKR", state: nil)
         
-        let ge = CountryModel(country: "Germany", state: ["Munich", "Dortmund", "Bayern", "Livercusen"])
-        let ua = CountryModel(country: "Ukraine", state: ["Kyiv", "Volyn'", "Odessa", "Lviv"])
-        
-        adresses.append(ge)
-        adresses.append(ua)
-        
-        completion(adresses)
+        completion([ge, ua])
     }
 }

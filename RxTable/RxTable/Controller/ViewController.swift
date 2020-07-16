@@ -22,6 +22,7 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = ViewModel()
         checkValid()
         setupBinds()
     }
@@ -44,13 +45,10 @@ final class ViewController: UIViewController {
     }
     
     private func checkValid() {
-        viewModel = ViewModel(continueButton: continueButton.rx.tap.asObservable())
-        viewModel.output.isValid.asObservable()
-            .map( { [weak self] isValid in
-                self?.presentAlert(title: isValid ? "SUCCESS" : "FAIL")
-            })
-        .subscribe(onNext: { print("") })
-        .disposed(by: disposeBag)
+        continueButton.rx.tap
+            .bind { [weak self] in
+                self?.presentAlert(title: self?.viewModel.output.checkFieldsFilling() ?? "zzz")
+        }.disposed(by: disposeBag)
     }
     
     private func presentAlert(title: String) {

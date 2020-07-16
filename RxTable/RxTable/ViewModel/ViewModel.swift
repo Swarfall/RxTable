@@ -9,6 +9,10 @@
 import RxCocoa
 import RxSwift
 
+protocol ValidationFields {
+    func checkFieldsFilling() -> String
+}
+
 protocol ViewModelType {
     var input: ViewModelInput { get }
     var output: ViewModelOutput { get }
@@ -20,11 +24,10 @@ protocol ViewModelInput {
     var state: BehaviorRelay<String> { get }
 }
 
-protocol ViewModelOutput {
+protocol ViewModelOutput: ValidationFields {
     var cityString: Observable<String> { get }
     var countryString: Observable<String> { get }
     var stateString: Observable<String> { get }
-    var isValid: Observable<Bool> { get }
 }
 
 final class ViewModel: ViewModelInput, ViewModelOutput {
@@ -41,26 +44,18 @@ final class ViewModel: ViewModelInput, ViewModelOutput {
     var stateString: Observable<String> {
         return state.asObservable()
     }
-    var isValid: Observable<Bool>
     
-    init(continueButton: Observable<Void>) {
-       
-        let cityValid = city
-        .distinctUntilChanged()
-        .map { $0.count > 0 }
-        
-        let countryValid = country
-        .distinctUntilChanged()
-        .map { $0.count > 0 }
-        
-        let stateValid = state
-        .distinctUntilChanged()
-        .map { $0.count > 0 }
-        
-        isValid = Observable.combineLatest(cityValid, countryValid, stateValid) { $0 && $1 && $2 }
-        
-        isValid = continueButton
-        .withLatestFrom(isValid)
+    func checkFieldsFilling() -> String {
+        if city.value.isEmpty {
+            return "Enter City"
+        }
+        if country.value.isEmpty {
+            return "Enter Country"
+        }
+        if state.value.isEmpty {
+            return "Enter State"
+        }
+        return "Code: zzz, Country: \(country.value)"
     }
 }
 
