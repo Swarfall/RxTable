@@ -19,12 +19,14 @@ final class ViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     private var viewModel: ViewModelType!
+    private let transition = PanelTransition()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = ViewModel()
         checkValid()
         setupBinds()
+        setupTaps()
     }
     
     private func setupBinds() {
@@ -44,6 +46,21 @@ final class ViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
+    private func setupTaps() {
+        let countryTap = UITapGestureRecognizer(target: self, action: #selector(countryTapped(_:)))
+        countryTextField.addGestureRecognizer(countryTap)
+        countryTap.numberOfTouchesRequired = 1
+        countryTap.numberOfTapsRequired = 1
+    }
+    
+    @objc private func countryTapped(_ sender: UITapGestureRecognizer) {
+        let child = MenuViewController()
+        child.transitioningDelegate = transition
+        child.modalPresentationStyle = .custom
+        
+        present(child, animated: true)
+    }
+    
     private func checkValid() {
         continueButton.rx.tap
             .bind { [weak self] in
@@ -58,4 +75,3 @@ final class ViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 }
-

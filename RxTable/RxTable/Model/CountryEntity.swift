@@ -11,12 +11,10 @@ import Foundation
 final class CountryEntity {
     let country: String
     let code: String
-    let state: [StateEntity]?
     
-    init(country: String, code: String, state: [StateEntity]?) {
+    init(country: String, code: String) {
         self.country = country
         self.code = code
-        self.state = state
     }
 }
 

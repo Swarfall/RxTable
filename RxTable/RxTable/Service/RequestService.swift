@@ -11,9 +11,9 @@ import Foundation
 final class RequestService {
     static func fetchAdress(completion: @escaping([CountryEntity]) -> Void) {
 
-        let ge = CountryEntity(country: "Germany", code: "GER", state: [StateEntity(nameState: "Munich"), StateEntity(nameState: "Dortmund"), StateEntity(nameState: "Bayern"), StateEntity(nameState: "Livercusen")])
-        let ua = CountryEntity(country: "Ukraine", code: "UKR", state: nil)
-        
-        completion([ge, ua])
+//        let ge = CountryEntity(country: "Germany", code: "GER", state: [StateEntity(nameState: "Munich"), StateEntity(nameState: "Dortmund"), StateEntity(nameState: "Bayern"), StateEntity(nameState: "Livercusen")])
+//        let ua = CountryEntity(country: "Ukraine", code: "UKR", state: nil)
+//        
+//        completion([ge, ua])
     }
 }
