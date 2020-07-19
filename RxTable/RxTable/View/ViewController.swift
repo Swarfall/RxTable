@@ -57,7 +57,7 @@ final class ViewController: UIViewController {
         let child = MenuViewController()
         child.transitioningDelegate = transition
         child.modalPresentationStyle = .custom
-        
+        child.selectField = SelectField.country
         present(child, animated: true)
     }
     

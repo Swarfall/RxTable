@@ -22,18 +22,21 @@ protocol ViewModelInput {
     var city: BehaviorRelay<String> { get }
     var country: BehaviorRelay<String> { get }
     var state: BehaviorRelay<String> { get }
+    var code: BehaviorRelay<String> { get }
 }
 
 protocol ViewModelOutput: ValidationFields {
     var cityString: Observable<String> { get }
     var countryString: Observable<String> { get }
     var stateString: Observable<String> { get }
+    var codeString: Observable<String> { get }
 }
 
 final class ViewModel: ViewModelInput, ViewModelOutput {
     var city = BehaviorRelay<String>(value: "")
     var country = BehaviorRelay<String>(value: "")
     var state = BehaviorRelay<String>(value: "")
+    var code = BehaviorRelay<String>(value: "")
     
     var cityString: Observable<String> {
         return city.asObservable()
@@ -43,6 +46,9 @@ final class ViewModel: ViewModelInput, ViewModelOutput {
     }
     var stateString: Observable<String> {
         return state.asObservable()
+    }
+    var codeString: Observable<String> {
+        return code.asObservable()
     }
     
     func checkFieldsFilling() -> String {
@@ -55,7 +61,7 @@ final class ViewModel: ViewModelInput, ViewModelOutput {
         if state.value.isEmpty {
             return "Enter State"
         }
-        return "Code: zzz, Country: \(country.value)"
+        return "Code: \(code.value), Country: \(country.value)"
     }
 }
 
