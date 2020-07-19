@@ -35,10 +35,18 @@ final class ViewController: UIViewController {
             .bind(to: viewModel.input.city)
             .disposed(by: disposeBag)
         
-        countryTextField.rx.text
+//        viewModel.input.country.asObservable() // TODO: - 1й способ
+//            .bind(to: countryTextField.rx.text)
+//            .disposed(by: disposeBag)
+        
+        countryTextField.rx.text             // TODO: - 2й способ
             .orEmpty
             .bind(to: viewModel.input.country)
             .disposed(by: disposeBag)
+        
+//        viewModel.output.countryString.asObservable() // TODO: - 3й способ
+//            .bind(to: countryTextField.rx.text)
+//            .disposed(by: disposeBag)
         
         stateTextField.rx.text
             .orEmpty

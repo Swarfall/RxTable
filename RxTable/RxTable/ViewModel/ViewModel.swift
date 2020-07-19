@@ -34,7 +34,7 @@ protocol ViewModelOutput: ValidationFields {
 
 final class ViewModel: ViewModelInput, ViewModelOutput {
     var city = BehaviorRelay<String>(value: "")
-    var country = BehaviorRelay<String>(value: "")
+    var country = BehaviorRelay<String>(value: "1")
     var state = BehaviorRelay<String>(value: "")
     var code = BehaviorRelay<String>(value: "")
     

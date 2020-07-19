@@ -27,7 +27,10 @@ protocol MenuViewModelType {
 }
 
 final class MenuViewModel: MenuViewModelInput, MenuViewModelOutput {
+    
     // MARK: - Public properties
+    var viewModel = ViewModel()
+    
     var countries: Observable<[CountryEntity]> {
         return self.countriesProperty.asObservable()
     }
@@ -38,7 +41,6 @@ final class MenuViewModel: MenuViewModelInput, MenuViewModelOutput {
     
     var countriesProperty = BehaviorRelay<[CountryEntity]>(value: [])
     var gerStatesProperty = BehaviorRelay<[StateEntity]>(value: [])
-    
     
     // MARK: - Public methods
     func fetchCountries() {
@@ -51,5 +53,15 @@ final class MenuViewModel: MenuViewModelInput, MenuViewModelOutput {
         RequestService.fetchStates { [weak self] states in
             self?.gerStatesProperty.accept(states)
         }
+    }
+}
+
+extension MenuViewModel: MenuViewModelType {
+    var input: MenuViewModelInput {
+        return self
+    }
+    
+    var output: MenuViewModelOutput {
+        return self
     }
 }

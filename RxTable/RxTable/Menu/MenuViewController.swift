@@ -31,7 +31,6 @@ class MenuViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     let viewModel = MenuViewModel()
-    let mainViewModel = ViewModel()
     
     // MARK: - LifeCicle
     override func viewDidLoad() {
@@ -84,9 +83,9 @@ class MenuViewController: UIViewController {
             tableView.rx.itemSelected
                 .subscribe(onNext: { [weak self] indexPath in
                     let cell = self?.tableView.cellForRow(at: indexPath) as? MenuCell
-                    self?.mainViewModel.input.code.accept(cell?.stateCode ?? "")
-                    self?.mainViewModel.input.country.accept(cell?.country ?? "")
-                    self?.dismiss(animated: true) // TODO: - дисмисится контроллер, но не появляется в странах текст страны (первоочередная задача!!!)
+                    self?.viewModel.viewModel.country.accept(cell?.country ?? "dont success country")
+                    self?.viewModel.viewModel.code.accept(cell?.stateCode ?? "dont success code")
+                    self?.dismiss(animated: true)
                 }).disposed(by: disposeBag)
             
         } else if selectField == SelectField.state {
