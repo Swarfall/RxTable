@@ -30,7 +30,7 @@ class MenuViewController: UIViewController {
     var selectField: SelectField!
     let disposeBag = DisposeBag()
     
-    let viewModel = MenuViewModel()
+    let menuViewModel = MenuViewModel()
     
     // MARK: - LifeCicle
     override func viewDidLoad() {
@@ -38,7 +38,7 @@ class MenuViewController: UIViewController {
         setupView()
         setupTableView()
         setupCell()
-        viewModel.fetchCountries()
+        menuViewModel.fetchCountries()
         setupBind()
     }
     
@@ -73,7 +73,7 @@ class MenuViewController: UIViewController {
     private func setupBind() {
         if selectField == SelectField.country {
             // TODO: - cellForRowAt IndexPath
-            viewModel.countries
+            menuViewModel.countries
                 .bind(to: tableView.rx.items(cellIdentifier: MenuCell.identifier, cellType: MenuCell.self)) { row, countries, cell in
                     cell.selectAdress = SelectField.country
                     cell.update(model: countries)
@@ -83,13 +83,13 @@ class MenuViewController: UIViewController {
             tableView.rx.itemSelected
                 .subscribe(onNext: { [weak self] indexPath in
                     let cell = self?.tableView.cellForRow(at: indexPath) as? MenuCell
-                    self?.viewModel.viewModel.country.accept(cell?.country ?? "dont success country")
-                    self?.viewModel.viewModel.code.accept(cell?.stateCode ?? "dont success code")
+                    self?.menuViewModel.addressViewModel.input.country.accept(cell?.country ?? "dont success country")
+                    self?.menuViewModel.addressViewModel.input.code.accept(cell?.stateCode ?? "dont success code")
                     self?.dismiss(animated: true)
                 }).disposed(by: disposeBag)
             
         } else if selectField == SelectField.state {
-            viewModel.gerStates
+            menuViewModel.gerStates
                 .bind(to: tableView.rx.items(cellIdentifier: MenuCell.identifier, cellType: MenuCell.self)) { row, countries, cell in
                     cell.selectAdress = SelectField.state
                     cell.update(model: countries)

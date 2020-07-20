@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		921CE12724AF2ED4005B93DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921CE12624AF2ED4005B93DD /* AppDelegate.swift */; };
 		921CE12924AF2ED4005B93DD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921CE12824AF2ED4005B93DD /* SceneDelegate.swift */; };
-		921CE12B24AF2ED4005B93DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921CE12A24AF2ED4005B93DD /* ViewController.swift */; };
+		921CE12B24AF2ED4005B93DD /* AddresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921CE12A24AF2ED4005B93DD /* AddresViewController.swift */; };
 		921CE12E24AF2ED4005B93DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 921CE12C24AF2ED4005B93DD /* Main.storyboard */; };
 		921CE13024AF2ED6005B93DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 921CE12F24AF2ED6005B93DD /* Assets.xcassets */; };
 		921CE13324AF2ED6005B93DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 921CE13124AF2ED6005B93DD /* LaunchScreen.storyboard */; };
@@ -18,7 +18,7 @@
 		9260AEBB24C23CAE008ABAE9 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9260AEBA24C23CAE008ABAE9 /* BaseCell.swift */; };
 		9260AEBF24C23E4C008ABAE9 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9260AEBD24C23E4C008ABAE9 /* MenuCell.swift */; };
 		9260AEC024C23E4C008ABAE9 /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9260AEBE24C23E4C008ABAE9 /* MenuCell.xib */; };
-		92624F1024BF051800FAFDA0 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92624F0F24BF051800FAFDA0 /* ViewModel.swift */; };
+		92624F1024BF051800FAFDA0 /* AddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92624F0F24BF051800FAFDA0 /* AddressViewModel.swift */; };
 		92624F1224BF052800FAFDA0 /* CountryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92624F1124BF052800FAFDA0 /* CountryEntity.swift */; };
 		92624F1524BF056C00FAFDA0 /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92624F1424BF056C00FAFDA0 /* RequestService.swift */; };
 		92624F1824BF225600FAFDA0 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92624F1724BF225600FAFDA0 /* AlertController.swift */; };
@@ -39,7 +39,7 @@
 		921CE12324AF2ED4005B93DD /* RxTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		921CE12624AF2ED4005B93DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		921CE12824AF2ED4005B93DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		921CE12A24AF2ED4005B93DD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		921CE12A24AF2ED4005B93DD /* AddresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddresViewController.swift; sourceTree = "<group>"; };
 		921CE12D24AF2ED4005B93DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		921CE12F24AF2ED6005B93DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		921CE13224AF2ED6005B93DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,7 +49,7 @@
 		9260AEBA24C23CAE008ABAE9 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		9260AEBD24C23E4C008ABAE9 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		9260AEBE24C23E4C008ABAE9 /* MenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
-		92624F0F24BF051800FAFDA0 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		92624F0F24BF051800FAFDA0 /* AddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewModel.swift; sourceTree = "<group>"; };
 		92624F1124BF052800FAFDA0 /* CountryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryEntity.swift; sourceTree = "<group>"; };
 		92624F1424BF056C00FAFDA0 /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
 		92624F1724BF225600FAFDA0 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 		92624F0C24BF04D400FAFDA0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				921CE12A24AF2ED4005B93DD /* ViewController.swift */,
+				921CE12A24AF2ED4005B93DD /* AddresViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,7 +186,7 @@
 		92624F0D24BF04E000FAFDA0 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				92624F0F24BF051800FAFDA0 /* ViewModel.swift */,
+				92624F0F24BF051800FAFDA0 /* AddressViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -384,13 +384,13 @@
 				9260AEBB24C23CAE008ABAE9 /* BaseCell.swift in Sources */,
 				92DAED0924C1D9E4000A551E /* DimmPresentationController.swift in Sources */,
 				9260AEB924C23C98008ABAE9 /* BaseEntity.swift in Sources */,
-				921CE12B24AF2ED4005B93DD /* ViewController.swift in Sources */,
+				921CE12B24AF2ED4005B93DD /* AddresViewController.swift in Sources */,
 				92624F1524BF056C00FAFDA0 /* RequestService.swift in Sources */,
 				921CE12724AF2ED4005B93DD /* AppDelegate.swift in Sources */,
 				9260AEBF24C23E4C008ABAE9 /* MenuCell.swift in Sources */,
 				92DAED0724C1D9D3000A551E /* PresentationController.swift in Sources */,
 				92DAED1124C1DAA5000A551E /* CGPoint+Velocity.swift in Sources */,
-				92624F1024BF051800FAFDA0 /* ViewModel.swift in Sources */,
+				92624F1024BF051800FAFDA0 /* AddressViewModel.swift in Sources */,
 				92624F1824BF225600FAFDA0 /* AlertController.swift in Sources */,
 				92DAED0E24C1DA51000A551E /* DismissAnimation.swift in Sources */,
 				92DAED1324C1DAB6000A551E /* InstantPanGestureRecognizer.swift in Sources */,

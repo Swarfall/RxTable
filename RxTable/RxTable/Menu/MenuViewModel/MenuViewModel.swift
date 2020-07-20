@@ -29,7 +29,7 @@ protocol MenuViewModelType {
 final class MenuViewModel: MenuViewModelInput, MenuViewModelOutput {
     
     // MARK: - Public properties
-    var viewModel = ViewModel()
+    var addressViewModel = AddressViewModel()
     
     var countries: Observable<[CountryEntity]> {
         return self.countriesProperty.asObservable()

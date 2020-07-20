@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  AddresViewController.swift
 //  RxTable
 //
 //  Created by Вячеслав on 03.07.2020.
@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-final class ViewController: UIViewController {
+final class AddresViewController: UIViewController {
     
     @IBOutlet private weak var cityTextField: UITextField!
     @IBOutlet private weak var countryTextField: UITextField!
@@ -35,18 +35,18 @@ final class ViewController: UIViewController {
             .bind(to: viewModel.input.city)
             .disposed(by: disposeBag)
         
-//        viewModel.input.country.asObservable() // TODO: - 1й способ
-//            .bind(to: countryTextField.rx.text)
-//            .disposed(by: disposeBag)
+        viewModel.input.country.asObservable() // TODO: - 1й способ
+            .bind(to: countryTextField.rx.text)
+            .disposed(by: disposeBag)
         
         countryTextField.rx.text             // TODO: - 2й способ
             .orEmpty
             .bind(to: viewModel.input.country)
             .disposed(by: disposeBag)
         
-//        viewModel.output.countryString.asObservable() // TODO: - 3й способ
-//            .bind(to: countryTextField.rx.text)
-//            .disposed(by: disposeBag)
+        viewModel.output.countryString.asObservable() // TODO: - 3й способ
+            .bind(to: countryTextField.rx.text)
+            .disposed(by: disposeBag)
         
         stateTextField.rx.text
             .orEmpty
