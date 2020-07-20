@@ -178,7 +178,9 @@
 		92624F0C24BF04D400FAFDA0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9260AEBC24C23E28008ABAE9 /* MenuCell */,
 				921CE12A24AF2ED4005B93DD /* AddresViewController.swift */,
+				92DAECFE24C1D876000A551E /* MenuViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				92624F0F24BF051800FAFDA0 /* AddressViewModel.swift */,
+				9260AEB224C23B12008ABAE9 /* MenuViewModel */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -218,9 +221,6 @@
 		92DAECF524C1B78E000A551E /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				9260AEBC24C23E28008ABAE9 /* MenuCell */,
-				9260AEB224C23B12008ABAE9 /* MenuViewModel */,
-				92DAECFE24C1D876000A551E /* MenuViewController.swift */,
 				92DAED0024C1D941000A551E /* Transation */,
 				92DAED0524C1D9B3000A551E /* Presentation */,
 				92DAED0A24C1DA11000A551E /* Animations */,

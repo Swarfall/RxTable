@@ -26,7 +26,6 @@ class MenuViewController: UIViewController {
     private let tableView = UITableView()
     private lazy var swipeView = UIView()
     
-    // TODO: - прокинуть сюда из главного контроллера кейс SelectField в зависимости от выбраного-вводимого текстФилда
     var selectField: SelectField!
     let disposeBag = DisposeBag()
     
@@ -83,7 +82,7 @@ class MenuViewController: UIViewController {
             tableView.rx.itemSelected
                 .subscribe(onNext: { [weak self] indexPath in
                     let cell = self?.tableView.cellForRow(at: indexPath) as? MenuCell
-                    self?.menuViewModel.addressViewModel.input.country.accept(cell?.country ?? "dont success country")
+                    self?.menuViewModel.addressViewModel.input.country.accept(cell?.country ?? "dont success country") // TODO: - завтык с передачей стринги в текстФилду на главном контроллере
                     self?.menuViewModel.addressViewModel.input.code.accept(cell?.stateCode ?? "dont success code")
                     self?.dismiss(animated: true)
                 }).disposed(by: disposeBag)

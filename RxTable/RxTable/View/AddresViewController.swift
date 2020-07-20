@@ -18,12 +18,12 @@ final class AddresViewController: UIViewController {
     @IBOutlet private weak var continueButton: UIButton!
     
     private let disposeBag = DisposeBag()
-    private var viewModel: ViewModelType!
+    private var viewModel: AddressViewModelType!
     private let transition = PanelTransition()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = ViewModel()
+        viewModel = AddressViewModel()
         checkValid()
         setupBinds()
         setupTaps()
@@ -35,14 +35,14 @@ final class AddresViewController: UIViewController {
             .bind(to: viewModel.input.city)
             .disposed(by: disposeBag)
         
-        viewModel.input.country.asObservable() // TODO: - 1й способ
-            .bind(to: countryTextField.rx.text)
-            .disposed(by: disposeBag)
-        
-        countryTextField.rx.text             // TODO: - 2й способ
-            .orEmpty
-            .bind(to: viewModel.input.country)
-            .disposed(by: disposeBag)
+//        viewModel.input.country.asObservable() // TODO: - 1й способ
+//            .bind(to: countryTextField.rx.text)
+//            .disposed(by: disposeBag)
+//
+//        countryTextField.rx.text             // TODO: - 2й способ
+//            .orEmpty
+//            .bind(to: viewModel.input.country)
+//            .disposed(by: disposeBag)
         
         viewModel.output.countryString.asObservable() // TODO: - 3й способ
             .bind(to: countryTextField.rx.text)
