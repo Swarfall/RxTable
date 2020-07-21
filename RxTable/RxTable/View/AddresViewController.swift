@@ -35,22 +35,22 @@ final class AddresViewController: UIViewController {
             .bind(to: viewModel.input.city)
             .disposed(by: disposeBag)
         
-//        viewModel.input.country.asObservable() // TODO: - 1й способ
-//            .bind(to: countryTextField.rx.text)
-//            .disposed(by: disposeBag)
-//
-//        countryTextField.rx.text             // TODO: - 2й способ
-//            .orEmpty
-//            .bind(to: viewModel.input.country)
-//            .disposed(by: disposeBag)
-        
-        viewModel.output.countryString.asObservable() // TODO: - 3й способ
-            .bind(to: countryTextField.rx.text)
-            .disposed(by: disposeBag)
         
         stateTextField.rx.text
             .orEmpty
             .bind(to: viewModel.input.state)
+            .disposed(by: disposeBag)
+        
+        viewModel.input.country.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.viewModel.output.menuViewModel.countryCallback = { [weak self] country, code in
+                    self?.viewModel.input.country.accept(country)
+                    self?.viewModel.input.code.accept(code)
+                }
+            }).disposed(by: disposeBag)
+        
+        viewModel.input.country.asObservable()
+            .bind(to: self.countryTextField.rx.text)
             .disposed(by: disposeBag)
     }
     

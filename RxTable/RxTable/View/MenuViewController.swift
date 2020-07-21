@@ -20,20 +20,22 @@ enum State {
     case another
 }
 
-class MenuViewController: UIViewController {
+final class MenuViewController: UIViewController {
     
     // MARK: - Private properties
     private let tableView = UITableView()
     private lazy var swipeView = UIView()
     
+    
     var selectField: SelectField!
     let disposeBag = DisposeBag()
     
-    let menuViewModel = MenuViewModel()
+    var menuViewModel: MenuViewModel!
     
     // MARK: - LifeCicle
     override func viewDidLoad() {
         super.viewDidLoad()
+        menuViewModel = MenuViewModel()
         setupView()
         setupTableView()
         setupCell()
@@ -82,8 +84,7 @@ class MenuViewController: UIViewController {
             tableView.rx.itemSelected
                 .subscribe(onNext: { [weak self] indexPath in
                     let cell = self?.tableView.cellForRow(at: indexPath) as? MenuCell
-                    self?.menuViewModel.addressViewModel.input.country.accept(cell?.country ?? "dont success country") // TODO: - завтык с передачей стринги в текстФилду на главном контроллере
-                    self?.menuViewModel.addressViewModel.input.code.accept(cell?.stateCode ?? "dont success code")
+                    self?.menuViewModel.countryCallback?(cell?.country ?? "", cell?.stateCode ?? "")
                     self?.dismiss(animated: true)
                 }).disposed(by: disposeBag)
             

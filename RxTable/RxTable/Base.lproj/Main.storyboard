@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -11,11 +12,11 @@
             <objects>
                 <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="AddresViewController" customModule="RxTable" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t7H-sq-tBG">
-                                <rect key="frame" x="20" y="163" width="560" height="34"/>
+                                <rect key="frame" x="20" y="207" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Lea-J9-gly"/>
                                 </constraints>
@@ -23,7 +24,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bfc-cI-0WD">
-                                <rect key="frame" x="20" y="254" width="560" height="34"/>
+                                <rect key="frame" x="20" y="298" width="374" height="34"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="8Ot-D4-d1J"/>
@@ -32,7 +33,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sl1-LP-8OB">
-                                <rect key="frame" x="20" y="130" width="31" height="21"/>
+                                <rect key="frame" x="20" y="174" width="31" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="2eh-6g-j9r"/>
                                 </constraints>
@@ -41,7 +42,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Peo-eE-cL0">
-                                <rect key="frame" x="20" y="221" width="62" height="21"/>
+                                <rect key="frame" x="20" y="265" width="62" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="yik-d7-Px6"/>
                                 </constraints>
@@ -50,7 +51,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HA4-Zf-fUF">
-                                <rect key="frame" x="20" y="312" width="41" height="21"/>
+                                <rect key="frame" x="20" y="356" width="41" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Evx-47-hI3"/>
                                 </constraints>
@@ -59,7 +60,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3aC-ZJ-GmA">
-                                <rect key="frame" x="0.0" y="540" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="802" width="414" height="60"/>
                                 <color key="backgroundColor" red="0.0" green="0.60310047860000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Lxl-rq-irn"/>
@@ -70,7 +71,7 @@
                                 </state>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="52a-ZK-oTg">
-                                <rect key="frame" x="20" y="345" width="560" height="34"/>
+                                <rect key="frame" x="20" y="389" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="zmI-Qg-hQp"/>
                                 </constraints>
@@ -104,6 +105,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="cLD-Fa-cK7"/>
                     <connections>
                         <outlet property="cityTextField" destination="t7H-sq-tBG" id="hNq-R3-h36"/>
                         <outlet property="continueButton" destination="3aC-ZJ-GmA" id="dhA-bY-Nsi"/>
@@ -113,7 +115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="117.85714285714285"/>
+            <point key="canvasLocation" x="1047.8260869565217" y="117.85714285714285"/>
         </scene>
     </scenes>
 </document>

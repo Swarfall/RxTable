@@ -30,9 +30,13 @@ protocol AddressViewModelOutput: ValidationFields {
     var countryString: Observable<String> { get }
     var stateString: Observable<String> { get }
     var codeString: Observable<String> { get }
+    var menuViewModel: MenuViewModel { get }
 }
 
 final class AddressViewModel: AddressViewModelInput, AddressViewModelOutput {
+    
+    var menuViewModel = MenuViewModel()
+    
     var city = BehaviorRelay<String>(value: "")
     var country = BehaviorRelay<String>(value: "")
     var state = BehaviorRelay<String>(value: "")
@@ -42,7 +46,7 @@ final class AddressViewModel: AddressViewModelInput, AddressViewModelOutput {
         return city.asObservable()
     }
     var countryString: Observable<String> {
-        return country.asObservable()
+       return country.asObservable()
     }
     var stateString: Observable<String> {
         return state.asObservable()

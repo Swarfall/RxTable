@@ -133,14 +133,6 @@
 			path = RxTable;
 			sourceTree = "<group>";
 		};
-		9260AEB224C23B12008ABAE9 /* MenuViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				9260AEB324C23B31008ABAE9 /* MenuViewModel.swift */,
-			);
-			path = MenuViewModel;
-			sourceTree = "<group>";
-		};
 		9260AEB524C23C64008ABAE9 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,9 +170,9 @@
 		92624F0C24BF04D400FAFDA0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9260AEBC24C23E28008ABAE9 /* MenuCell */,
 				921CE12A24AF2ED4005B93DD /* AddresViewController.swift */,
 				92DAECFE24C1D876000A551E /* MenuViewController.swift */,
+				9260AEBC24C23E28008ABAE9 /* MenuCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,7 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				92624F0F24BF051800FAFDA0 /* AddressViewModel.swift */,
-				9260AEB224C23B12008ABAE9 /* MenuViewModel */,
+				9260AEB324C23B31008ABAE9 /* MenuViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

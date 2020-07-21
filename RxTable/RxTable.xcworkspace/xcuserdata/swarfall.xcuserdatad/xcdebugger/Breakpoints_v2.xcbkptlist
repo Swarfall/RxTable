@@ -7,48 +7,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DEE853E6-473F-4E72-A154-5927022C4842"
+            uuid = "C3260123-F244-4B92-922B-6A91494A6215"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RxTable/Menu/MenuViewController.swift"
+            filePath = "RxTable/View/AddresViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "setupBind()"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "setupBinds()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C3260123-F244-4B92-922B-6A91494A6215 - 320badb6115a0c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; () in RxTable.AddresViewController.(setupBinds in _328C693FC34499AD5CFC17949D4C693C)() -&gt; ()"
+                  moduleName = "RxTable"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/swarfall/Documents/RxAccVerification/RxTable/RxTable/RxTable/View/AddresViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "69">
+               </Location>
+               <Location
+                  uuid = "C3260123-F244-4B92-922B-6A91494A6215 - da90164603883919"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String, Swift.String) -&gt; () in closure #1 (Swift.String) -&gt; () in RxTable.AddresViewController.(setupBinds in _328C693FC34499AD5CFC17949D4C693C)() -&gt; ()"
+                  moduleName = "RxTable"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/swarfall/Documents/RxAccVerification/RxTable/RxTable/RxTable/View/AddresViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "197">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1841F4DB-63DB-433F-9145-181821C8F401"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RxTable/View/AddresViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "setupBinds()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D162A3E2-E7C7-43EA-A148-A0A0E2D63652"
+            uuid = "ABF1BE30-6776-4338-B116-772ADA530ED0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RxTable/ViewModel/ViewModel.swift"
+            filePath = "RxTable/View/MenuViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "AddressViewModel"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BCC7906A-E8D0-4840-862F-07899077D524"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RxTable/View/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "setupBinds()"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "setupBind()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

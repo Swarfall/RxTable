@@ -19,7 +19,7 @@ class MenuCell: BaseCell {
     
     static let identifier = "MenuCell"
     
-    // TODO: - пока оставляю для алерта на главном экране. Возможно, не пригодиться эти свойства
+    // TODO: - пока оставляю для алерта на главном экране. Возможно, не пригодяться эти свойства
     var stateCode = ""
     var country = ""
     
