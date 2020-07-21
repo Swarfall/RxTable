@@ -22,10 +22,27 @@ enum State {
 
 final class MenuViewController: UIViewController {
     
+    enum Layout {
+        
+        enum SuperviewLayout {
+            static let corner: CGFloat = 24
+        }
+        
+        enum SwipeViewLayout {
+            static let frameX: CGFloat = -16
+            static let frameY: CGFloat = 11
+            static let frameWidth: CGFloat = 32
+            static let frameHeight: CGFloat = 6
+        }
+        
+        enum TableViewLayout {
+            static let topConstant: CGFloat = 28
+        }
+    }
+    
     // MARK: - Private properties
     private let tableView = UITableView()
     private lazy var swipeView = UIView()
-    
     
     var selectField: SelectField!
     let disposeBag = DisposeBag()
@@ -46,20 +63,20 @@ final class MenuViewController: UIViewController {
     // MARK: - Private methods
     private func setupView() {
         view.backgroundColor = .white
-        view.layer.cornerRadius = 24
+        view.layer.cornerRadius = Layout.SuperviewLayout.corner
         
         view.addSubview(swipeView)
-        swipeView.frame = CGRect(x: (view.frame.width / 2) - 16,
-                                 y: 11,
-                                 width: 32,
-                                 height: 6)
+        swipeView.frame = CGRect(x: (view.frame.width / 2) + Layout.SwipeViewLayout.frameX,
+                                 y: Layout.SwipeViewLayout.frameY,
+                                 width: Layout.SwipeViewLayout.frameWidth,
+                                 height: Layout.SwipeViewLayout.frameHeight)
         swipeView.backgroundColor = .lightGray
     }
     
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 28).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: Layout.TableViewLayout.topConstant).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -83,9 +100,10 @@ final class MenuViewController: UIViewController {
             // TODO: - didSelectRowAt IndexPath
             tableView.rx.itemSelected
                 .subscribe(onNext: { [weak self] indexPath in
-                    let cell = self?.tableView.cellForRow(at: indexPath) as? MenuCell
-                    self?.menuViewModel.countryCallback?(cell?.country ?? "", cell?.stateCode ?? "")
-                    self?.dismiss(animated: true)
+                    guard let self = self else { return }
+                    guard let cell = self.tableView.cellForRow(at: indexPath) as? MenuCell else { return }
+                    self.menuViewModel.input.countryCallback?(cell.country, cell.stateCode)
+                    self.dismiss(animated: true)
                 }).disposed(by: disposeBag)
             
         } else if selectField == SelectField.state {

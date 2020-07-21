@@ -43,14 +43,16 @@ final class AddresViewController: UIViewController {
         
         viewModel.input.country.asObservable()
             .subscribe(onNext: { [weak self] _ in
-                self?.viewModel.output.menuViewModel.countryCallback = { [weak self] country, code in
-                    self?.viewModel.input.country.accept(country)
-                    self?.viewModel.input.code.accept(code)
+                guard let self = self else { return }
+                self.viewModel.output.menuViewModel.countryCallback = { country, code in
+//                    guard let self = self else { return }
+                    self.viewModel.input.country.accept(country)
+                    self.viewModel.input.code.accept(code)
                 }
             }).disposed(by: disposeBag)
         
         viewModel.input.country.asObservable()
-            .bind(to: self.countryTextField.rx.text)
+            .bind(to: countryTextField.rx.text)
             .disposed(by: disposeBag)
     }
     

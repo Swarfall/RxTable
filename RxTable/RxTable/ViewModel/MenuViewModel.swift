@@ -16,6 +16,10 @@ protocol MenuViewModelInput {
     func fetchGerStates()
     var countryProperty: BehaviorRelay<String> { get }
     var stateProperty: BehaviorRelay<String> { get }
+    var codeProperty: BehaviorRelay<String> { get }
+//    func countryCallback (@escaping callback:(String, String) -> Void)
+    //func fetchCountries(completion: @escaping([CountryEntity]) -> Void)
+    var countryCallback: ((_ country: String, _ code: String) -> Void)? { get }
 }
 
 protocol MenuViewModelOutput {
@@ -23,6 +27,7 @@ protocol MenuViewModelOutput {
     var gerStates: Observable<[StateEntity]> { get }
     var country: Observable<String> { get }
     var state: Observable<String> { get }
+    var code: Observable<String> { get }
 }
 
 protocol MenuViewModelType {
@@ -47,11 +52,15 @@ final class MenuViewModel: MenuViewModelInput, MenuViewModelOutput {
     var state: Observable<String> {
         return stateProperty.asObservable()
     }
+    var code: Observable<String> {
+        return codeProperty.asObservable()
+    }
     
     var countriesProperty = BehaviorRelay<[CountryEntity]>(value: [])
     var gerStatesProperty = BehaviorRelay<[StateEntity]>(value: [])
     var countryProperty = BehaviorRelay<String>(value: "")
     var stateProperty = BehaviorRelay<String>(value: "")
+    var codeProperty = BehaviorRelay<String>(value: "")
     
     // MARK: - Public methods
     func fetchCountries() {
