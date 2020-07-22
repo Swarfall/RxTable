@@ -18,40 +18,45 @@ final class AddresViewController: UIViewController {
     @IBOutlet private weak var continueButton: UIButton!
     
     private let disposeBag = DisposeBag()
-    private var viewModel: AddressViewModelType!
+    private var addressViewModel: AddressViewModelType!
     private let transition = PanelTransition()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = AddressViewModel()
+        addressViewModel = AddressViewModel()
         checkValid()
         setupBinds()
         setupTaps()
     }
     
     private func setupBinds() {
+        
         cityTextField.rx.text
             .orEmpty
-            .bind(to: viewModel.input.city)
+            .bind(to: addressViewModel.input.city)
+            .disposed(by: disposeBag)
+        
+        addressViewModel.output.cityString
+            .bind(to: cityTextField.rx.text)
             .disposed(by: disposeBag)
         
         
         stateTextField.rx.text
             .orEmpty
-            .bind(to: viewModel.input.state)
+            .bind(to: addressViewModel.input.state)
             .disposed(by: disposeBag)
         
-        viewModel.input.country.asObservable()
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                self.viewModel.output.menuViewModel.countryCallback = { country, code in
-//                    guard let self = self else { return }
-                    self.viewModel.input.country.accept(country)
-                    self.viewModel.input.code.accept(code)
-                }
-            }).disposed(by: disposeBag)
+        addressViewModel.output.stateString
+            .bind(to: stateTextField.rx.text)
+            .disposed(by: disposeBag)
         
-        viewModel.input.country.asObservable()
+        addressViewModel.output.menuViewModel.entity
+            .subscribe(onNext: { [weak self] entity in
+            guard let self = self else { return }
+            self.addressViewModel.input.entity.accept(entity)
+        }).disposed(by: disposeBag)
+        
+        addressViewModel.output.countryString
             .bind(to: countryTextField.rx.text)
             .disposed(by: disposeBag)
     }
@@ -68,13 +73,14 @@ final class AddresViewController: UIViewController {
         child.transitioningDelegate = transition
         child.modalPresentationStyle = .custom
         child.selectField = SelectField.country
+        child.menuViewModel = addressViewModel.output.menuViewModel
         present(child, animated: true)
     }
     
     private func checkValid() {
         continueButton.rx.tap
             .bind { [weak self] in
-                self?.presentAlert(title: self?.viewModel.output.checkFieldsFilling() ?? "zzz")
+                self?.presentAlert(title: self?.addressViewModel.output.checkFieldsFilling() ?? "zzz")
         }.disposed(by: disposeBag)
     }
     

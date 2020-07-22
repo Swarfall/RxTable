@@ -47,7 +47,7 @@ final class MenuViewController: UIViewController {
     var selectField: SelectField!
     let disposeBag = DisposeBag()
     
-    var menuViewModel: MenuViewModel!
+    var menuViewModel: MenuViewModelType!
     
     // MARK: - LifeCicle
     override func viewDidLoad() {
@@ -56,7 +56,6 @@ final class MenuViewController: UIViewController {
         setupView()
         setupTableView()
         setupCell()
-        menuViewModel.fetchCountries()
         setupBind()
     }
     
@@ -73,6 +72,41 @@ final class MenuViewController: UIViewController {
         swipeView.backgroundColor = .lightGray
     }
     
+    private func setupCell() {
+        let nib = UINib(nibName: MenuCell.identifier, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: MenuCell.identifier)
+    }
+    
+    private func setupBind() {
+        
+        if selectField == SelectField.country {
+            
+            menuViewModel.input.fetchCountries()
+            
+            menuViewModel.output.countries
+                .bind(to: tableView.rx.items(cellIdentifier: MenuCell.identifier, cellType: MenuCell.self)) { row, countries, cell in
+                    cell.selectAdress = SelectField.country
+                    cell.update(model: countries)
+            }.disposed(by: disposeBag)
+            
+            tableView.rx.itemSelected
+                .map { [weak self] indexPath -> MenuCell? in
+                    self?.tableView.cellForRow(at: indexPath) as? MenuCell
+            }
+            .compactMap { $0 }
+            .subscribe(onNext: { [weak self] cell in
+                guard let self = self else { return}
+                self.menuViewModel.input.entityProperty.accept(cell.entity)
+                self.dismiss(animated: true)
+                }).disposed(by: disposeBag)
+            
+        } else if selectField == SelectField.state {
+            // TODO: -  tableView.rx.itemSelected for germanyStates
+        }
+    }
+}
+
+extension MenuViewController {
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -82,37 +116,4 @@ final class MenuViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.separatorStyle = .none
     }
-    
-    private func setupCell() {
-        let nib = UINib(nibName: MenuCell.identifier, bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: MenuCell.identifier)
-    }
-    
-    private func setupBind() {
-        if selectField == SelectField.country {
-            // TODO: - cellForRowAt IndexPath
-            menuViewModel.countries
-                .bind(to: tableView.rx.items(cellIdentifier: MenuCell.identifier, cellType: MenuCell.self)) { row, countries, cell in
-                    cell.selectAdress = SelectField.country
-                    cell.update(model: countries)
-            }.disposed(by: disposeBag)
-            
-            // TODO: - didSelectRowAt IndexPath
-            tableView.rx.itemSelected
-                .subscribe(onNext: { [weak self] indexPath in
-                    guard let self = self else { return }
-                    guard let cell = self.tableView.cellForRow(at: indexPath) as? MenuCell else { return }
-                    self.menuViewModel.input.countryCallback?(cell.country, cell.stateCode)
-                    self.dismiss(animated: true)
-                }).disposed(by: disposeBag)
-            
-        } else if selectField == SelectField.state {
-            menuViewModel.gerStates
-                .bind(to: tableView.rx.items(cellIdentifier: MenuCell.identifier, cellType: MenuCell.self)) { row, countries, cell in
-                    cell.selectAdress = SelectField.state
-                    cell.update(model: countries)
-            }.disposed(by: disposeBag)
-        }
-    }
-    
 }

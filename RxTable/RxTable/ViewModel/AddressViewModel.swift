@@ -20,9 +20,8 @@ protocol AddressViewModelType {
 
 protocol AddressViewModelInput {
     var city: BehaviorRelay<String> { get }
-    var country: BehaviorRelay<String> { get }
     var state: BehaviorRelay<String> { get }
-    var code: BehaviorRelay<String> { get }
+    var entity: BehaviorRelay<CountryEntity?> { get }
 }
 
 protocol AddressViewModelOutput: ValidationFields {
@@ -34,38 +33,38 @@ protocol AddressViewModelOutput: ValidationFields {
 }
 
 final class AddressViewModel: AddressViewModelInput, AddressViewModelOutput {
-    
+
     var menuViewModel = MenuViewModel()
     
     var city = BehaviorRelay<String>(value: "")
-    var country = BehaviorRelay<String>(value: "")
     var state = BehaviorRelay<String>(value: "")
-    var code = BehaviorRelay<String>(value: "")
+    var entity = BehaviorRelay<CountryEntity?>(value: nil)
     
     var cityString: Observable<String> {
         return city.asObservable()
-    }
-    var countryString: Observable<String> {
-       return country.asObservable()
     }
     var stateString: Observable<String> {
         return state.asObservable()
     }
     var codeString: Observable<String> {
-        return code.asObservable()
+        guard let code = entity.value?.code else { return Observable.just("code nil") }
+        return  Observable.just(code) //entity.compactMap { $0 }.map { $0.code }
+    }                                                       // TODO: - не работает, пока хз как решить
+    var countryString: Observable<String> {
+        return entity.compactMap { $0 }.map { $0.country }
     }
     
     func checkFieldsFilling() -> String {
         if city.value.isEmpty {
             return "Enter City"
         }
-        if country.value.isEmpty {
+        if let counrty = entity.value?.country, counrty.isEmpty {
             return "Enter Country"
         }
         if state.value.isEmpty {
             return "Enter State"
         }
-        return "Code: \(code.value), Country: \(country.value)"
+        return "Code: \(entity.value?.code ?? "no code"), Country: \(entity.value?.country ?? "no country")"
     }
 }
 
