@@ -40,7 +40,6 @@ final class AddresViewController: UIViewController {
             .bind(to: cityTextField.rx.text)
             .disposed(by: disposeBag)
         
-        
         stateTextField.rx.text
             .orEmpty
             .bind(to: addressViewModel.input.state)

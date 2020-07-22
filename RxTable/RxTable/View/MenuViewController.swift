@@ -52,7 +52,6 @@ final class MenuViewController: UIViewController {
     // MARK: - LifeCicle
     override func viewDidLoad() {
         super.viewDidLoad()
-        menuViewModel = MenuViewModel()
         setupView()
         setupTableView()
         setupCell()

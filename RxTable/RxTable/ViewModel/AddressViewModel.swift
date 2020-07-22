@@ -51,7 +51,8 @@ final class AddressViewModel: AddressViewModelInput, AddressViewModelOutput {
         return  Observable.just(code) //entity.compactMap { $0 }.map { $0.code }
     }                                                       // TODO: - не работает, пока хз как решить
     var countryString: Observable<String> {
-        return entity.compactMap { $0 }.map { $0.country }
+//        guard let country = entity.value?.country else { return Observable.just("country nil") }
+        return entity.compactMap { $0 }.map {$0.country}
     }
     
     func checkFieldsFilling() -> String {

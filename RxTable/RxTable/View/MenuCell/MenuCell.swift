@@ -20,8 +20,10 @@ class MenuCell: BaseCell {
     
     override func update(model: BaseEntity?) {
         if selectAdress == SelectField.country {
+            
             self.entity = model as? CountryEntity
             guard let entity = self.entity else { return }
+            
             flagImageView.isHidden = false
             flagImageView.image = entity.image
             nameLabel.text = entity.country
