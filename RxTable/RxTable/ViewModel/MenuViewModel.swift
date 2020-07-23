@@ -12,8 +12,8 @@ import RxSwift
 protocol MenuViewModelInput {
     var countriesProperty: BehaviorRelay<[CountryEntity]> { get }
     var gerStatesProperty: BehaviorRelay<[StateEntity]> { get }
-    var stateProperty: BehaviorRelay<String> { get }
-    var entityProperty: BehaviorRelay<CountryEntity?> { get }
+    var stateProperty: BehaviorRelay<StateEntity?> { get }
+    var countryProperty: BehaviorRelay<CountryEntity?> { get }
     func fetchCountries()
     func fetchGerStates()
 }
@@ -21,8 +21,8 @@ protocol MenuViewModelInput {
 protocol MenuViewModelOutput {
     var countries: Observable<[CountryEntity]> { get }
     var gerStates: Observable<[StateEntity]> { get }
-    var state: Observable<String> { get }
-    var entity: Observable<CountryEntity?> { get }
+    var state: Observable<StateEntity?> { get }
+    var country: Observable<CountryEntity?> { get }
 }
 
 protocol MenuViewModelType {
@@ -38,17 +38,17 @@ final class MenuViewModel: MenuViewModelInput, MenuViewModelOutput {
     var gerStates: Observable<[StateEntity]> {
         return self.gerStatesProperty.asObservable()
     }
-    var entity: Observable<CountryEntity?> {
-        return entityProperty.asObservable()
+    var country: Observable<CountryEntity?> {
+        return countryProperty.asObservable()
     }
-    var state: Observable<String> {
+    var state: Observable<StateEntity?> {
         return stateProperty.asObservable()
     }
     
     var countriesProperty = BehaviorRelay<[CountryEntity]>(value: [])
     var gerStatesProperty = BehaviorRelay<[StateEntity]>(value: [])
-    var entityProperty = BehaviorRelay<CountryEntity?>(value: nil)
-    var stateProperty = BehaviorRelay<String>(value: "")
+    var countryProperty = BehaviorRelay<CountryEntity?>(value: nil)
+    var stateProperty = BehaviorRelay<StateEntity?>(value: nil)
     
     // MARK: - Public methods
     func fetchCountries() {

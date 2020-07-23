@@ -15,7 +15,7 @@ enum SelectField {
     case state
 }
 
-enum State {
+enum State: String {
     case ger
     case another
 }
@@ -94,13 +94,31 @@ final class MenuViewController: UIViewController {
             }
             .compactMap { $0 }
             .subscribe(onNext: { [weak self] cell in
-                guard let self = self else { return}
-                self.menuViewModel.input.entityProperty.accept(cell.entity)
+                guard let self = self, let entity = cell.entity as? CountryEntity else { return }
+                self.menuViewModel.input.countryProperty.accept(entity)
                 self.dismiss(animated: true)
-                }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
             
         } else if selectField == SelectField.state {
-            // TODO: -  tableView.rx.itemSelected for germanyStates
+            
+            menuViewModel.input.fetchGerStates()
+            
+            menuViewModel.output.gerStates
+                .bind(to: tableView.rx.items(cellIdentifier: MenuCell.identifier, cellType: MenuCell.self)) { row, states, cell in
+                    cell.selectAdress = SelectField.state
+                    cell.update(model: states)
+            }.disposed(by: disposeBag)
+            
+            tableView.rx.itemSelected
+                .map { [weak self] indexPath -> MenuCell? in
+                    self?.tableView.cellForRow(at: indexPath) as? MenuCell
+            }
+            .compactMap { $0 }
+            .subscribe(onNext: { [weak self] cell in
+                guard let self = self, let entity = cell.entity as? StateEntity else { return }
+                self.menuViewModel.input.stateProperty.accept(entity)
+                self.dismiss(animated: true)
+            }).disposed(by: disposeBag)
         }
     }
 }

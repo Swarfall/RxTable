@@ -47,11 +47,9 @@ final class AddressViewModel: AddressViewModelInput, AddressViewModelOutput {
         return state.asObservable()
     }
     var codeString: Observable<String> {
-        guard let code = entity.value?.code else { return Observable.just("code nil") }
-        return  Observable.just(code) //entity.compactMap { $0 }.map { $0.code }
-    }                                                       // TODO: - не работает, пока хз как решить
+        return entity.compactMap { $0 }.map { $0.code }
+    }
     var countryString: Observable<String> {
-//        guard let country = entity.value?.country else { return Observable.just("country nil") }
         return entity.compactMap { $0 }.map {$0.country}
     }
     

@@ -15,20 +15,28 @@ class MenuCell: BaseCell {
     
     static let identifier = "MenuCell"
     
-    var entity: CountryEntity?
+    var entity: BaseEntity?
     var selectAdress: SelectField!
     
     override func update(model: BaseEntity?) {
         if selectAdress == SelectField.country {
             
-            self.entity = model as? CountryEntity
-            guard let entity = self.entity else { return }
-            
+            guard let entity = model as? CountryEntity else { return }
+            self.entity = entity
+             
             flagImageView.isHidden = false
             flagImageView.image = entity.image
             nameLabel.text = entity.country
+            
+            if entity.code == "GER" {
+                entity.state = State.ger
+            }
+            
         } else if selectAdress == SelectField.state {
+            
             guard let entity = model as? StateEntity else { return }
+            self.entity = entity
+            
             flagImageView.isHidden = true
             nameLabel.text = entity.nameState
         }

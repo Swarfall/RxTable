@@ -49,11 +49,11 @@ final class AddresViewController: UIViewController {
             .bind(to: stateTextField.rx.text)
             .disposed(by: disposeBag)
         
-        addressViewModel.output.menuViewModel.entity
+        addressViewModel.output.menuViewModel.country
             .subscribe(onNext: { [weak self] entity in
-            guard let self = self else { return }
-            self.addressViewModel.input.entity.accept(entity)
-        }).disposed(by: disposeBag)
+                guard let self = self else { return }
+                self.addressViewModel.input.entity.accept(entity)
+            }).disposed(by: disposeBag)
         
         addressViewModel.output.countryString
             .bind(to: countryTextField.rx.text)
@@ -65,21 +65,41 @@ final class AddresViewController: UIViewController {
         countryTextField.addGestureRecognizer(countryTap)
         countryTap.numberOfTouchesRequired = 1
         countryTap.numberOfTapsRequired = 1
+        
+            let gerStateTap = UITapGestureRecognizer(target: self, action: #selector(gerStateTapped(_:)))
+            stateTextField.addGestureRecognizer(gerStateTap)
+            gerStateTap.numberOfTouchesRequired = 1
+            gerStateTap.numberOfTapsRequired = 1
+        
     }
     
     @objc private func countryTapped(_ sender: UITapGestureRecognizer) {
         let child = MenuViewController()
-        child.transitioningDelegate = transition
-        child.modalPresentationStyle = .custom
         child.selectField = SelectField.country
         child.menuViewModel = addressViewModel.output.menuViewModel
+        
+        child.transitioningDelegate = transition
+        child.modalPresentationStyle = .custom
         present(child, animated: true)
+    }
+    
+    @objc private func gerStateTapped(_ sender: UITapGestureRecognizer) {
+        
+            let child = MenuViewController()
+            child.modalPresentationStyle = .custom
+            child.selectField = SelectField.state
+            child.menuViewModel = addressViewModel.output.menuViewModel
+            
+            child.transitioningDelegate = transition
+            child.modalPresentationStyle = .custom
+            present(child, animated: true)
     }
     
     private func checkValid() {
         continueButton.rx.tap
             .bind { [weak self] in
-                self?.presentAlert(title: self?.addressViewModel.output.checkFieldsFilling() ?? "zzz")
+                guard let self = self else { return }
+                self.presentAlert(title: self.addressViewModel.output.checkFieldsFilling())
         }.disposed(by: disposeBag)
     }
     
