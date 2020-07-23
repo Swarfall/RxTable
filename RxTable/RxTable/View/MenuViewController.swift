@@ -16,7 +16,7 @@ enum SelectField {
 }
 
 enum State: String {
-    case ger
+    case ger = "GER"
     case another
 }
 

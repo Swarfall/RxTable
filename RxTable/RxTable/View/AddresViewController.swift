@@ -49,6 +49,12 @@ final class AddresViewController: UIViewController {
             .bind(to: stateTextField.rx.text)
             .disposed(by: disposeBag)
         
+        addressViewModel.output.menuViewModel.state
+            .subscribe(onNext: { [weak self] state in
+                guard let self = self, let state = state?.nameState else { return }
+                self.addressViewModel.input.state.accept(state)
+            }).disposed(by: disposeBag)
+        
         addressViewModel.output.menuViewModel.country
             .subscribe(onNext: { [weak self] entity in
                 guard let self = self else { return }
@@ -66,14 +72,14 @@ final class AddresViewController: UIViewController {
         countryTap.numberOfTouchesRequired = 1
         countryTap.numberOfTapsRequired = 1
         
-            let gerStateTap = UITapGestureRecognizer(target: self, action: #selector(gerStateTapped(_:)))
-            stateTextField.addGestureRecognizer(gerStateTap)
-            gerStateTap.numberOfTouchesRequired = 1
-            gerStateTap.numberOfTapsRequired = 1
-        
+        let gerStateTap = UITapGestureRecognizer(target: self, action: #selector(gerStateTapped(_:)))
+        stateTextField.addGestureRecognizer(gerStateTap)
+        gerStateTap.numberOfTouchesRequired = 1
+        gerStateTap.numberOfTapsRequired = 1
     }
     
     @objc private func countryTapped(_ sender: UITapGestureRecognizer) {
+        
         let child = MenuViewController()
         child.selectField = SelectField.country
         child.menuViewModel = addressViewModel.output.menuViewModel
@@ -85,14 +91,14 @@ final class AddresViewController: UIViewController {
     
     @objc private func gerStateTapped(_ sender: UITapGestureRecognizer) {
         
-            let child = MenuViewController()
-            child.modalPresentationStyle = .custom
-            child.selectField = SelectField.state
-            child.menuViewModel = addressViewModel.output.menuViewModel
-            
-            child.transitioningDelegate = transition
-            child.modalPresentationStyle = .custom
-            present(child, animated: true)
+        let child = MenuViewController()
+        child.modalPresentationStyle = .custom
+        child.selectField = SelectField.state
+        child.menuViewModel = addressViewModel.output.menuViewModel
+        
+        child.transitioningDelegate = transition
+        child.modalPresentationStyle = .custom
+        present(child, animated: true)
     }
     
     private func checkValid() {
