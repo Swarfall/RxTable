@@ -59,6 +59,7 @@ final class AddresViewController: UIViewController {
             .subscribe(onNext: { [weak self] entity in
                 guard let self = self else { return }
                 self.addressViewModel.input.entity.accept(entity)
+                self.addressViewModel.input.state.accept("")
             }).disposed(by: disposeBag)
         
         addressViewModel.output.countryString
