@@ -12,13 +12,11 @@ final class CountryEntity: BaseEntity {
     let country: String
     let code: String
     let image: UIImage
-    var state: State
     
-    init(country: String, code: String, image: UIImage, cellType: BaseCell.Type = MenuCell.self, state: State = State.another) {
+    init(country: String, code: String, image: UIImage, cellType: BaseCell.Type = MenuCell.self) {
         self.country = country
         self.code = code
         self.image = image
-        self.state = state
         super.init(cellType: cellType)
     }
 }

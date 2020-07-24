@@ -72,7 +72,7 @@ final class AddresViewController: UIViewController {
         countryTap.numberOfTouchesRequired = 1
         countryTap.numberOfTapsRequired = 1
         
-        let gerStateTap = UITapGestureRecognizer(target: self, action: #selector(gerStateTapped(_:)))
+        let gerStateTap = UITapGestureRecognizer(target: self, action: #selector(stateTapped(_:)))
         stateTextField.addGestureRecognizer(gerStateTap)
         gerStateTap.numberOfTouchesRequired = 1
         gerStateTap.numberOfTapsRequired = 1
@@ -89,16 +89,19 @@ final class AddresViewController: UIViewController {
         present(child, animated: true)
     }
     
-    @objc private func gerStateTapped(_ sender: UITapGestureRecognizer) {
-        
-        let child = MenuViewController()
-        child.modalPresentationStyle = .custom
-        child.selectField = SelectField.state
-        child.menuViewModel = addressViewModel.output.menuViewModel
-        
-        child.transitioningDelegate = transition
-        child.modalPresentationStyle = .custom
-        present(child, animated: true)
+    @objc private func stateTapped(_ sender: UITapGestureRecognizer) {
+        if addressViewModel.input.entity.value?.code == State.ger.rawValue {
+            
+            let child = MenuViewController()
+            child.modalPresentationStyle = .custom
+            child.selectField = SelectField.state
+            child.menuViewModel = addressViewModel.output.menuViewModel
+            child.transitioningDelegate = transition
+            child.modalPresentationStyle = .custom
+            present(child, animated: true)
+        } else {
+            stateTextField.becomeFirstResponder()
+        }
     }
     
     private func checkValid() {

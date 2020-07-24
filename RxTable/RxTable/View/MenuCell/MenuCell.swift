@@ -27,11 +27,6 @@ class MenuCell: BaseCell {
             flagImageView.isHidden = false
             flagImageView.image = entity.image
             nameLabel.text = entity.country
-            
-            if entity.code == "GER" {
-                entity.state = State.ger
-            }
-            
         } else if selectAdress == SelectField.state {
             
             guard let entity = model as? StateEntity else { return }
